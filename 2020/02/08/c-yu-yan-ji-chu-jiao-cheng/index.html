@@ -27,7 +27,8 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -412,7 +413,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.1k
                 </div>
                 
 
@@ -439,36 +440,61 @@
 <p>==注意：由于编译器不同，Visual Studio并不完全适合C语言开发，如果您的学校有具体的环境要求，还请遵照学校要求==</p>
 <p>==对于刚刚接触编程的新手，我本人<strong>不提倡</strong>直接在Linux环境编程（即使这样很装逼），也<strong>不提倡</strong>使用文本编辑器结合控制台指令编译的方式进行学习！==</p>
 <h1 id="开篇：Hello-World"><a href="#开篇：Hello-World" class="headerlink" title="开篇：Hello World"></a>开篇：Hello World</h1><p>首先，请新建一个空白的文件，重命名为 Hello World.c<br>把下面的东西复制粘贴到你新建的文件里面</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Hello world.c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Hello World"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//Hello world.c</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后使用您ide的编译运行功能（一般快捷键为<kbd>F5</kbd>)，您应当能看到一个黑色窗口弹出，并显示如下文字<br><img src="https://img-blog.csdnimg.cn/2020020722072394.png" alt="你好，世界！"></p>
 <p>==<em>没有显示，或者黑窗一闪而过？，请尝试以下代码！</em>==</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Hello World!"</span>);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdlib.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"pause"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>==我想现在你一定有很多的疑问，但请不要着急，接下来我会进行说明。==</p>
 <h2 id="关于printf-“Hello-World”"><a href="#关于printf-“Hello-World”" class="headerlink" title="关于printf(“Hello World”)"></a>关于printf(“Hello World”)</h2><p><strong>究竟是什么东西让我的屏幕上显示出了 Hello World ?</strong></p>
 <p>如果你把程序进行修改，比如把双引号里面的 <em>Hello World</em> 换成 <em>您吃了吗？</em> ，你会发现程序的运行结果也随之改变。<br><strong>e.g.</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Hello World!"</span>);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c"><code class="language-c"><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>换为</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"您吃了吗？"</span>);</span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-c"><code class="language-c"><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"您吃了吗？"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>更进一步，如果你把 <strong>printf(“您吃了吗？”);</strong> 多复制几次，比如这样</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Hello world.c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"您吃了吗？"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"您吃了吗？"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"您吃了吗？"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"您吃了吗？"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"您吃了吗？"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//Hello world.c</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"您吃了吗？"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"您吃了吗？"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"您吃了吗？"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"您吃了吗？"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"您吃了吗？"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>==注意，请保持您新输入的东西在 <strong>int main(){</strong> 和 <strong>return 0</strong>之间，稍后我会说明原因==</p>
 <p>再次运行程序，你会发现你的屏幕上出现了一连串来自电脑的亲切的问候.<br><img src="https://img-blog.csdnimg.cn/20200207223123544.png" alt="冬日里温暖的问候"><br>==当然，作为完美主义者，您可能并<strong>不喜欢这些话挤在一行</strong>，可如果你尝试在句子里添加回车，你会发现加再多的回车也<strong>没有效果</strong>，甚至会导致程序无法运行，请不要着急，稍后我会说明原因==</p>
 <p>这时候，相信您已经猜到了，就是这个看起来很奇怪的 <strong>printf(“ “);</strong> 把我们投喂给它的东西放到了屏幕上</p>
 <h3 id="printf-是什么，它是从哪来的？"><a href="#printf-是什么，它是从哪来的？" class="headerlink" title="printf()是什么，它是从哪来的？"></a>printf()是什么，它是从哪来的？</h3><p>还记得我们最开始的程序吗</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Hello world.c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Hello World"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//Hello world.c</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意看这一句</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>#include</strong>是什么？<br>如果我们说的专业一点就是</p>
 <blockquote>
 <p>#include 是C/C++中包含头文件命令，用于将指定头文件嵌入源文件中。<br>……来自百度百科</p>
 </blockquote>
 <p>当然，这样的解释对于新手来讲未免看的有些云里雾里。<br>为了深刻理解，我们不妨<strong>先删掉</strong>代码中的<code>#include &lt;stdio.h&gt;</code></p>
 <p>我们的程序就变成了这样</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Hello world.c</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Hello World"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//Hello world.c</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>现在，如果我们重新编译运行程序，我们只会得到一条错误信息：<code>“printf”: 找不到标识符</code></p>
 <p>==注意：不同的ide对于错误提示可能有所不同==</p>
 <p>发生了什么？我们的编译器找不到<strong>printf</strong>了</p>
