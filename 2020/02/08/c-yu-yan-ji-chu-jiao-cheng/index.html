@@ -447,7 +447,7 @@
 <p>发生了什么？我们的编译器找不到<strong>printf</strong>了</p>
 <p>那么是不是C语言本身并不包含<strong>printf</strong>这个东西，<strong>它其实是存在于其他人写好的文件当中</strong>呢?</p>
 <p>确实是这样，C语言本身不能直接在屏幕上显示文字，<strong>前辈们</strong>为了方便后人编写程序，已经把输出文字的功能写好，并装在了<strong>stdio.h</strong>文件里头</p>
-<p>而 <code>#include&lt;stdio.h&gt;</code> 就是告诉你的编译器把<code>stdio.h</code>这个文件的内容加载到你的程序里面</p>
+<p>而 <code>#include&lt;stdio.h&gt;</code> 就是告诉你的编译器把<code>stdio.h</code>这个文件的内容加载到你的程序里面，让你能直接使用前辈的智慧结晶</p>
 <p><code>注意：stdio.h 里并不包含printf的完整实现，之后我会说明清楚</code></p>
 <p>这里面，<strong>前辈写的程序</strong>被<strong>包装</strong>成了<strong>函数</strong>，<strong>函数</strong>有个<strong>名字</strong>叫做<strong>printf</strong></p>
 <p><strong>什么是函数？</strong>，这里我不做过多解释，你完全可以认为<strong>函数就是</strong>一个黑盒子、一个<strong>自动炒菜锅</strong>，你把<strong>菜</strong>放<strong>进括号</strong>，<strong>他给你炒出你要的菜</strong></p>
