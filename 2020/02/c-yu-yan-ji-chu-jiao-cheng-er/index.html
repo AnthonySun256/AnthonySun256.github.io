@@ -33,9 +33,9 @@ int main(){
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -366,7 +366,7 @@ int main(){
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    888
+                    900
                 </div>
                 
 
@@ -416,6 +416,51 @@ int main(){
 <blockquote>
 <p>注意：printf的使用要遵照这样的格式：<strong>printf(“格式化字符串”, 参数1, 参数2, … ,参数n)；</strong><br>其中<strong>格式化字符串</strong>是你想要输出的主要内容，参数1..n为放在文中占位符的东西，参数之间用<strong>英文逗号</strong>隔开</p>
 </blockquote>
+<p>C语言还支持很多其他的占位符，如表所示，在之后的章节中，我们随用随说</p>
+<table>
+<thead>
+<tr>
+<th>占位符</th>
+<th>占的位置代表类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%c</td>
+<td>一个字符</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>十进制整数</td>
+</tr>
+<tr>
+<td>%i</td>
+<td>十进制、八进制、十六进制整数</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>八进制整数</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>十六进制整数</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>字符串</td>
+</tr>
+<tr>
+<td>%f,%F,%e,%E,%g,%G</td>
+<td>实数，可以是小数或者指数形式</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>无符号十进制整数</td>
+</tr>
+<tr>
+<td>%%</td>
+<td>百分号</td>
+</tr>
+</tbody></table>
 <p>在上面简单计算器的基础上，我们可以做一些小的扩展，比如，我希望计算下面算式的结果</p>
 <table>
 <thead>
@@ -452,12 +497,56 @@ int main(){
 <p><img src="https://img-blog.csdnimg.cn/20200209223958979.png" alt="商业级排版"></p>
 <p><strong>完美！</strong> 我们成功实现了让文字换行输出</p>
 <p>别着急，还有一个新的问题</p>
-<h1 id="什么是转义符？"><a href="#什么是转义符？" class="headerlink" title="什么是转义符？"></a>什么是转义符？</h1><p>也许你不懂什么编码，但是有一个常识你需要知道：对于计算机来讲，你<strong>键盘上的每一个符号</strong>（包括abcd，回车，冒号，句号，退格键……）在计算中都有唯一的编码与之对应</p>
-<blockquote>
-<p>不太理解?<br>记得谍战片里面发电报的情景吗？<br>主人公把从电台接收滴答滴答的莫尔斯密码记在纸上，之后拿出密码本一句话一句话的翻译，最后得出正确的情报<br>类似的，由于计算机只理解二进制数据，想要把键盘上的符号发给计算机，就必须通过一个<strong>密码本</strong>进行翻译。反之亦然，计算机也会通过查表得方法把它脑子里的东西翻译给我们</p>
-</blockquote>
-<p><code>这里我写的不是很满意，但是想不出来更容易理解的比喻了， 如果您有好的想法，请在下方留言，万分感谢！</code></p>
-<p><code>未完待续，2020年2月9日22点55分 更新</code></p>
+<h1 id="什么是转义符？"><a href="#什么是转义符？" class="headerlink" title="什么是转义符？"></a>什么是转义符？</h1><p>简单来说就是我们把键盘上一些特殊的功能键（回车、制表符、退格……）设置成了一些指令，具体来讲，C语言支持以下转义符</p>
+<table>
+<thead>
+<tr>
+<th align="center">转义字符</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\a</td>
+<td align="left">响铃(BEL)</td>
+</tr>
+<tr>
+<td align="center">\b</td>
+<td align="left">退格(BS) ，将当前位置移到前一列</td>
+</tr>
+<tr>
+<td align="center">\f</td>
+<td align="left">换页(FF)，将当前位置移到下页开头</td>
+</tr>
+<tr>
+<td align="center">\n</td>
+<td align="left">换行(LF) ，将当前位置移到下一行开头</td>
+</tr>
+<tr>
+<td align="center">\r</td>
+<td align="left">回车(CR) ，将当前位置移到本行开头</td>
+</tr>
+<tr>
+<td align="center">\t</td>
+<td align="left">水平制表(HT)</td>
+</tr>
+<tr>
+<td align="center">\v</td>
+<td align="left">垂直制表(VT)</td>
+</tr>
+<tr>
+<td align="center">\\’</td>
+<td align="left">单引号</td>
+</tr>
+<tr>
+<td align="center">\\”</td>
+<td align="left">双引号</td>
+</tr>
+<tr>
+<td align="center">\\\</td>
+<td align="left">反斜杠</td>
+</tr>
+</tbody></table>
+<h1 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h1><p>请尝试用本章所讲计算 3/2 的结果</p>
 
             </div>
             <hr/>
