@@ -4,15 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C语言基础教程（二）, Anthony&#39;s Blog">
-    <meta name="description" content="简单计算器
-回顾：在上一篇的教程中，我们了解了printf的功能和它的由来
+    <meta name="keywords" content="MiniZinc学习笔记, Anthony&#39;s Blog">
+    <meta name="description" content="最近在Coursera上学了 离散优化建模，里面介绍了MiniZinc这个建模语言，个人觉得比较新奇
+基本语法
+MiniZinc 语句顺序不重要
 
-还记得我们上一篇的代码吗？
-//Hello world.c
-#include &amp;lt;stdio.h&gt;
-int main(){
-    printf(&#34;Hello">
+你可以先定义变量再写表达式，这不是一个需要编译或者逐句解释得语言
+写的程序主要是为了给后端得">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +18,7 @@ int main(){
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>C语言基础教程（二） | Anthony&#39;s Blog</title>
+    <title>MiniZinc学习笔记 | Anthony&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -204,12 +202,12 @@ int main(){
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C语言基础教程（二）</h1>
+                    <h1 class="description center-align post-title">MiniZinc学习笔记</h1>
                 </div>
             </div>
         </div>
@@ -326,8 +324,8 @@ int main(){
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/C/">
-                                <span class="chip bg-color">C</span>
+                            <a href="/tags/MiniZinc/">
+                                <span class="chip bg-color">MiniZinc</span>
                             </a>
                         
                     </div>
@@ -338,8 +336,8 @@ int main(){
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
-                                教程
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                学习笔记
                             </a>
                         
                     </div>
@@ -351,7 +349,7 @@ int main(){
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-09
+                    2020-02-10
                 </div>
                 
 
@@ -365,14 +363,14 @@ int main(){
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    888
+                    358
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 				
@@ -388,75 +386,38 @@ int main(){
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="简单计算器"><a href="#简单计算器" class="headerlink" title="简单计算器"></a>简单计算器</h1><blockquote>
-<p>回顾：<br>在上一篇的教程中，我们了解了printf的功能和它的由来</p>
-</blockquote>
-<p>还记得我们上一篇的代码吗？</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//Hello world.c</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>现在，把<code>printf(&quot;Hello World&quot;);</code>改成<code>printf(&quot;1+1 = %d&quot;,1+1);</code><br>我们得到以下代码</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"1+1 = %d"</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>现在，运行一下，来看看结果如何</p>
-<p><img src="https://img-blog.csdnimg.cn/20200209215420217.png" alt="真理"><br>果然，如你料想的一样，这个程序输出了<strong>1+1 = 2</strong>这个真理</p>
-<p>那么，让我们端详一下<strong>printf()括号里面</strong>的变化：</p>
+                <p>最近在Coursera上学了 <a href="https://www.coursera.org/learn/lisan-youhua-jianmo-jichupian" target="_blank" rel="noopener">离散优化建模</a>，里面介绍了MiniZinc这个建模语言，个人觉得比较新奇</p>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><ul>
+<li><p>MiniZinc 语句顺序不重要</p>
 <ul>
-<li>等号后面有奇怪的 <strong>%d</strong></li>
-<li>双引号外面多了个逗号，后面又有一个1+1</li>
+<li>你可以先定义变量再写表达式，这不是一个需要编译或者逐句解释得语言</li>
+<li>写的程序主要是为了给后端得求解器描述问题</li>
 </ul>
-<p><code>如图所示</code><br><img src="https://img-blog.csdnimg.cn/20200209221042996.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70" alt="代码的变化"><br>双引号里面的 <strong>%d</strong> 叫做<strong>占位符</strong>，顾名思义，<strong>%d</strong>只是替一个整数值占了个位置，在程序运行时后面<strong>1+1</strong>这个式子的结果会替换掉 <strong>%d</strong><br><img src="https://img-blog.csdnimg.cn/20200209221506654.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70" alt="替换方式"></p>
-<blockquote>
-<p>注意：printf的使用要遵照这样的格式：<strong>printf(“格式化字符串”, 参数1, 参数2, … ,参数n)；</strong><br>其中<strong>格式化字符串</strong>是你想要输出的主要内容，参数1..n为放在文中占位符的东西，参数之间用<strong>英文逗号</strong>隔开</p>
-</blockquote>
-<p>在上面简单计算器的基础上，我们可以做一些小的扩展，比如，我希望计算下面算式的结果</p>
-<table>
-<thead>
-<tr>
-<th>2+2</th>
-<th>2*3</th>
-<th>4➗2</th>
-</tr>
-</thead>
-</table>
-<p>根据我们上面所讲，我们可以可以尝试拼凑出下面的一行代码</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"2+2 = %d, 2*3 = %d, 3/2 = %d"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token operator">*</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<p>注意：C语言的除号是<kbd>/</kbd>，而不是➗</p>
-</blockquote>
-<p>把它替换掉原来的printf我们得到以下程序</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"2+2 = %d, 2*3 = %d, 3/2 = %d"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token operator">*</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>我们来运行一下这个程序，看一看结果<br><img src="https://img-blog.csdnimg.cn/20200209223323912.png" alt="倒是没算错"><br>当然，其实我们更希望程序能像下面这样分行输出</p>
-<blockquote>
-<p>2+2 = 4,<br>2*3 = 6,<br>4/2 = 2</p>
-</blockquote>
-<p>但经过之前的实践，我们知道不论是用多个printf还是加上回车我们都无法成功换行。</p>
-<h1 id="如何换行？"><a href="#如何换行？" class="headerlink" title="如何换行？"></a>如何换行？</h1><p>这时候，就需要用到一个叫做转义符的东西 <strong>“\n”</strong>，我们把之前的代码改成这样</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"2+2 = %d,\n 2*3 = %d,\n 3/2 = %d"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token operator">*</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>会有效果吗？运行一下再说</p>
-<p><img src="https://img-blog.csdnimg.cn/20200209223958979.png" alt="商业级排版"></p>
-<p><strong>完美！</strong> 我们成功实现了让文字换行输出</p>
-<p>别着急，还有一个新的问题</p>
-<h1 id="什么是转义符？"><a href="#什么是转义符？" class="headerlink" title="什么是转义符？"></a>什么是转义符？</h1><p>也许你不懂什么编码，但是有一个常识你需要知道：对于计算机来讲，你<strong>键盘上的每一个符号</strong>（包括abcd，回车，冒号，句号，退格键……）在计算中都有唯一的编码与之对应</p>
-<blockquote>
-<p>不太理解?<br>记得谍战片里面发电报的情景吗？<br>主人公把从电台接收滴答滴答的莫尔斯密码记在纸上，之后拿出密码本一句话一句话的翻译，最后得出正确的情报<br>类似的，由于计算机只理解二进制数据，想要把键盘上的符号发给计算机，就必须通过一个<strong>密码本</strong>进行翻译。反之亦然，计算机也会通过查表得方法把它脑子里的东西翻译给我们</p>
-</blockquote>
-<p><code>这里我写的不是很满意，但是想不出来更容易理解的比喻了， 如果您有好的想法，请在下方留言，万分感谢！</code></p>
-<p><code>未完待续，2020年2月9日22点55分 更新</code></p>
+<ul>
+<li>关于变量<ul>
+<li>MiniZinc变量类型主要分为两大类<ul>
+<li>参数</li>
+<li>决策变量</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>其中<strong>参数</strong>类似于其他语言中的常量，<strong>只能在程序开始的时候被赋值</strong>而且<strong>只能被赋值一次</strong></p>
+<p><strong>决策变量</strong>相当于其他语言中普通的可变变量</p>
+<p>![4VU6<code>YD</code>)AH7G<code>CH8OFL3RO](C:\Users\Origi\Desktop\4VU6</code>YD<code>AH7G</code>CH8OFL3RO.png)</p>
+<p>可以看到，MiniZinc对于变量声明方式也是比较特殊的，形式为<code>变量类型描述:变量名称</code></p>
+<p>当然，这两个分类只是从<strong>变量是不是常量</strong>的角度划分的</p>
+<p>MiniZinc像其他语言一样，支持整数、浮点，数组、字符串、枚举、集合等类型</p>
+<p>比如生成一个大小为10的int类型数组</p>
+<ul>
+<li>1..10代表范围1~10</li>
+<li>数组统一用array[]表示，方括号里边写数组包含的下标，图里的数组可以访问的下标范围是1~10</li>
+<li>数组的下标可以是任意的类型（文字什么的也都可以，类似于字典，不过只能一对一）</li>
+</ul>
+<p><img src="C:%5CUsers%5COrigi%5CDesktop%5CQQ%E6%88%AA%E5%9B%BE20200210123959.png" alt="QQ截图20200210123959"></p>
 
             </div>
             <hr/>
@@ -482,7 +443,7 @@ int main(){
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.antonysun.com/2020/02/09/c-yu-yan-ji-chu-jiao-cheng-er/">http://blog.antonysun.com/2020/02/09/c-yu-yan-ji-chu-jiao-cheng-er/</a>
+                    <a href="http://blog.antonysun.com/2020/02/10/minizinc-xue-xi-bi-ji/">http://blog.antonysun.com/2020/02/10/minizinc-xue-xi-bi-ji/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -520,8 +481,8 @@ int main(){
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/C/">
-                                    <span class="chip bg-color">C</span>
+                                <a href="/tags/MiniZinc/">
+                                    <span class="chip bg-color">MiniZinc</span>
                                 </a>
                             
                         </div>
@@ -825,9 +786,10 @@ int main(){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/02/10/minizinc-xue-xi-bi-ji/">
                     <div class="card-image">
@@ -850,9 +812,9 @@ MiniZinc 语句顺序不重要
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -865,6 +827,7 @@ MiniZinc 语句顺序不重要
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -883,25 +846,31 @@ MiniZinc 语句顺序不重要
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/02/08/c-yu-yan-ji-chu-jiao-cheng-yi/">
+                <a href="/2020/02/09/c-yu-yan-ji-chu-jiao-cheng-er/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="C语言基础教程（一）">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="C语言基础教程（二）">
                         
-                        <span class="card-title">C语言基础教程（一）</span>
+                        <span class="card-title">C语言基础教程（二）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于编程环境网络上有很多C语言编程环境的配置教程，也有很多开箱即用的安装包，请大家自行摸索，对于学习来讲，微软的Visual Studio足以满足我们的需求。
-注意：由于编译器不同，Visual Studio并不完全适合C语言开发，如果您的
+                            简单计算器
+回顾：在上一篇的教程中，我们了解了printf的功能和它的由来
+
+还记得我们上一篇的代码吗？
+//Hello world.c
+#include &lt;stdio.h>
+int main(){
+    printf("Hello
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-09
                             </span>
                         <span class="publish-author">
                             
