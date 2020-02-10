@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta name="keywords" content="MiniZinc学习笔记, Anthony&#39;s Blog">
     <meta name="description" content="最近在Coursera上学了 离散优化建模，里面介绍了MiniZinc这个建模语言，个人觉得比较新奇
-基本语法
+基本语法变量类型
 MiniZinc 语句顺序不重要
 
 你可以先定义变量再写表达式，这不是一个需要编译或者逐句解释得语言
-写的程序主要是为了给后端得">
+写的程序主要是为了">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -363,14 +363,14 @@ MiniZinc 语句顺序不重要
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    350
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 				
@@ -387,7 +387,7 @@ MiniZinc 语句顺序不重要
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>最近在Coursera上学了 <a href="https://www.coursera.org/learn/lisan-youhua-jianmo-jichupian" target="_blank" rel="noopener">离散优化建模</a>，里面介绍了MiniZinc这个建模语言，个人觉得比较新奇</p>
-<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><ul>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><h2 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h2><ul>
 <li><p>MiniZinc 语句顺序不重要</p>
 <ul>
 <li>你可以先定义变量再写表达式，这不是一个需要编译或者逐句解释得语言</li>
@@ -405,20 +405,66 @@ MiniZinc 语句顺序不重要
 </ul>
 </li>
 </ul>
-<p>其中<strong>参数</strong>类似于其他语言中的常量，<strong>只能在程序开始的时候被赋值</strong>而且<strong>只能被赋值一次</strong></p>
-<p><strong>决策变量</strong>相当于其他语言中普通的可变变量</p>
+<p>其中<strong>参数</strong>类似于其他语言中的<strong>常量</strong>，<strong>只能在程序开始的时候被赋值</strong>而且<strong>只能被赋值一次</strong></p>
+<p><strong>决策变量</strong>相当于其他语言中普通的可变变量（类似于方程中的未知数）</p>
 <p><img src="https://img-blog.csdnimg.cn/20200210125011804.png" alt="变量声明"></p>
 <p>可以看到，MiniZinc对于变量声明方式也是比较特殊的，形式为<code>变量类型描述:变量名称</code></p>
 <p>当然，这两个分类只是从<strong>变量是不是常量</strong>的角度划分的</p>
 <p>MiniZinc像其他语言一样，支持整数、浮点，数组、字符串、枚举、集合等类型</p>
 <p>比如生成一个大小为10的int类型数组</p>
 <ul>
-<li>1..10代表范围1~10</li>
+<li>1..10代表从1到10的一个<strong>整数序列</strong></li>
 <li>数组统一用array[]表示，方括号里边写数组包含的下标，图里的数组可以访问的下标范围是1~10</li>
 <li>数组的下标可以是任意的类型（文字什么的也都可以，类似于字典，不过只能一对一）</li>
 </ul>
 <p><img src="https://img-blog.csdnimg.cn/20200210125104691.png" alt="声明一个下标为1~10的int类型数组"></p>
-
+<h2 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h2><p>MiniZinc是建模语言，它的主要作用是求解数学模型，我们光定义变量是不够的，一个模型除了$x,y,z$这样的变量还有会有很多的<strong>约束</strong>，比如$x = y+1$、$x\ge5$、$z\in R$ 等等，那么这些约束要怎样表达出来呢？</p>
+<p>以一个简单的约束问题来看</p>
+<p>$$x\in[-1,10],x\in Z,y=-(x-1)^2$$</p>
+<p>求$max(y)$</p>
+<p>很明显，这个问题的意思就是，x可以取从-1到10的整数（也就是x可以等于-1,0,1,2,3,4,5,6,7,8,9,10）$y=-(x-1)^2$ ，求一下 $y$ 的最大值</p>
+<p>这个问题很简单，但足够用来说明MiniZinc的语法</p>
+<p>首先我们定义变量x和y</p>
+<pre><code>var int: x; %定义整数变量x
+var int: y; %定义整数变量y</code></pre><p>接着，我们给x限定取值范围，并输入表达式 $y=-(x-1)^2$ ，这时候就需要用到我们的<strong>约束关键字</strong>了</p>
+<pre><code>var int: x; %定义整数变量x
+var int: y; %定义整数变量y
+constraint x&gt;=-1;
+constraint x&lt;=10;
+constraint y = -((x-1)^2) %必须要加上括号，不然会出问题</code></pre><p>这里面，<strong>constraint</strong> 之后放上就是我们模型的约束</p>
+<p>最后，我们要求最大值，使用 <strong>solve</strong> 语句</p>
+<pre><code>var int: x; %定义整数变量x
+var int: y; %定义整数变量y
+constraint x&gt;=-1;
+constraint x&lt;=10;
+constraint y = -((x-1)^2) %必须要加上括号，不然会出问题
+solve maximize y;</code></pre><p><strong>solve</strong> 后面紧跟着我们想要的目标，maximize是MiniZinc内置的关键字，表示求最大值（最小值是minimize），后面接上y，表示求y这个变量的最大值</p>
+<p>运行这个脚本，我们可以得到</p>
+<blockquote>
+<p>x=1;</p>
+<p>y=0;</p>
+</blockquote>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>对于这个脚本，我们可以进行一些优化，让脚本行数更少一些</p>
+<blockquote>
+<p>注意：一般来讲，模型的描述越紧凑，MiniZinc求解的速度越快，尤其是聚类等问题，越少使用constraint，求解速度越快</p>
+</blockquote>
+<p>首先，我们可以在变量定义的时候就限制x的取值范围</p>
+<pre><code>var -1..10: x; %x可以是从-1到10的任意整数</code></pre><p>其次，我们可以在变量定义的时候就给y赋值</p>
+<pre class="line-numbers language-\"><code class="language-\">var int: y = -((x-1)^2);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>我们的脚本就优化成了这样</p>
+<pre><code>var -1..10: x; 
+var int: y=-((x-1)^2);
+solve maximize y;</code></pre><p>理论上，这样的模型具有更快的求解速度（不绝对，视求解器而定）</p>
+<h3 id="新的问题"><a href="#新的问题" class="headerlink" title="新的问题"></a>新的问题</h3><p>我们发现，这个脚本运行以后只输出x的值，不输出y了</p>
+<p>对此，我们需要指定脚本的输出格式。</p>
+<p>语法如下</p>
+<pre><code>output &lt;字符串列表&gt;;</code></pre><p>与C语言类似，字符串写在<kbd>"</kbd> <kbd>"</kbd>里面，也支持\t \n等转义符</p>
+<p>对于如果要输出变量可以采用<strong>(变量名)</strong>的方式或者 <strong>“字符串”++show(变量名)</strong>的方式</p>
+<blockquote>
+<p>注意：MIniZinc里两个字符串之间用两个加号连接</p>
+</blockquote>
+<p>一般来讲，我们这样书写输出语句</p>
+<pre><code>output [&quot;1+1 = &quot; ++ show(1+1)]; %写在方括号里，show函数把变量或者其他类型转为字符串类型</code></pre>
             </div>
             <hr/>
 
@@ -804,11 +850,11 @@ MiniZinc 语句顺序不重要
                     <div class="summary block-with-text">
                         
                             最近在Coursera上学了 离散优化建模，里面介绍了MiniZinc这个建模语言，个人觉得比较新奇
-基本语法
+基本语法变量类型
 MiniZinc 语句顺序不重要
 
 你可以先定义变量再写表达式，这不是一个需要编译或者逐句解释得语言
-写的程序主要是为了给后端得
+写的程序主要是为了
                         
                     </div>
                     <div class="publish-info">
@@ -1075,7 +1121,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">2.4k</span>&nbsp;字
+                class="white-color">3.2k</span>&nbsp;字
             
             
             
