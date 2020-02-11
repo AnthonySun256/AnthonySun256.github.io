@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.antonysun.com/"/>
-  <updated>2020-02-10T09:40:12.514Z</updated>
+  <updated>2020-02-11T15:57:30.707Z</updated>
   <id>http://blog.antonysun.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C语言基础教程（三）</title>
+    <link href="http://blog.antonysun.com/2020/02/c-yu-yan-ji-chu-jiao-cheng-san/"/>
+    <id>http://blog.antonysun.com/2020/02/c-yu-yan-ji-chu-jiao-cheng-san/</id>
+    <published>2020-02-10T13:09:11.000Z</published>
+    <updated>2020-02-11T15:57:30.707Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;上一篇，我们讲了printf的基本用法，并写了一个简单的计算器。&lt;/p&gt;
+&lt;p&gt;还记得上一篇最后的&lt;strong&gt;任务&lt;/strong&gt;吗？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;计算 3/2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="教程" scheme="http://blog.antonysun.com/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="C" scheme="http://blog.antonysun.com/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>MiniZinc学习笔记</title>
