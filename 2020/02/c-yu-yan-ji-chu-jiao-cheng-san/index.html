@@ -367,14 +367,14 @@ int main(){
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    566
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 				
@@ -430,7 +430,32 @@ int main(){
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"3/2 = %d"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>未完待续 2020年2月11日 23点57分 更新</code></p>
+<p>因为$3/2$所使用的<strong>两个数都是int类型</strong>，C语言会自动把他们的计算结果转换成整数，导致我们小数点后面数据的丢失</p>
+<h3 id="如果修正？"><a href="#如果修正？" class="headerlink" title="如果修正？"></a>如果修正？</h3><p>这里有两个方法修正我们的程序</p>
+<ol>
+<li>根据<a href="https://www.cnblogs.com/weiyouqing/p/9090542.html" target="_blank" rel="noopener">C语言中不同类型的数据转换规则</a> （可点击进入查看转换规则），我们可以把表达式改为$3.0/2$（或者$3/2.0$、$3.0/2.0$）这样C语言会把表达式的结果记float类型</li>
+<li>通过强制类型转换，我们可以强制把3变为浮点数<code>float(3)</code>或者把2变为浮点数<code>float(2)</code>，得到<code>float(3)/2</code>【或者<code>3/float(2)</code>、<code>float(3)/float(2)</code>】来达到我们的目的</li>
+</ol>
+<blockquote>
+<p>注意：<code>float(3/2)</code>是不可以的，因为计算机在算$3/2$的时候就已经进行了丢弃数据（小数点后面内容）的操作，被丢掉的内容是无法还原的</p>
+</blockquote>
+<p>也许你已经改完了程序，它现在看起来是这样的</p>
+<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"3/2 = %d"</span><span class="token punctuation">,</span> <span class="token number">3.0</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="如果这时候运行程序，我们还是无法得到正确的答案"><a href="#如果这时候运行程序，我们还是无法得到正确的答案" class="headerlink" title="如果这时候运行程序，我们还是无法得到正确的答案"></a>如果这时候运行程序，我们还是无法得到正确的答案</h4><p>还记得之前所讲的<strong>占位符</strong>吗，对于int类型的数据，我们可以通过在文字里加上%d给整数占个位子。但现在时代变了，要想为$1.5$这个浮点数占个位子我们需要用<code>%f​</code></p>
+<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"3/2 = %f"</span><span class="token punctuation">,</span> <span class="token number">3.0</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>运行一下</p>
+<p><img src="https://img-blog.csdnimg.cn/20200212235021995.png" alt="还不错"></p>
+<p>没有问题，我们程序输出了正确的结果</p>
+<p>但你可能会有一点完美主义情结——<strong>能不能不要让这破程序输出这么多零？</strong></p>
+<p><code>未完待续 2020年2月12日23点50分更新</code><br>如果您有更好的意见或者建议，请在评论区留言，感谢！</p>
 
             </div>
             <hr/>
@@ -1077,6 +1102,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 </main>
 
 
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
 
     <footer class="page-footer bg-color">
     <div class="container row center-align" style="margin-bottom: 15px !important;">
@@ -1089,7 +1121,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3.8k</span>&nbsp;字
+                class="white-color">4.3k</span>&nbsp;字
             
             
             
