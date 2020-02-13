@@ -360,7 +360,7 @@ int main(){
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-02-12
+                    2020-02-13
                 </div>
                 
 
@@ -425,11 +425,6 @@ int main(){
 <h3 id="为什么我们的程序输出了整数？"><a href="#为什么我们的程序输出了整数？" class="headerlink" title="为什么我们的程序输出了整数？"></a>为什么我们的程序输出了整数？</h3><p>理论上来讲3/2应该得到 1.5，根据分类，这应该是一个float或者double类型的小数，但是我们的程序却输出了 1 这个int类型的整数</p>
 <p>这是因为有些时候C语言会自动帮你完成类型转换这一过程</p>
 <p>还记得我们的程序吗</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"3/2 = %d"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>因为$3/2$所使用的<strong>两个数都是int类型</strong>，C语言会自动把他们的计算结果转换成整数，导致我们小数点后面数据的丢失</p>
 <h3 id="如果修正？"><a href="#如果修正？" class="headerlink" title="如果修正？"></a>如果修正？</h3><p>这里有两个方法修正我们的程序</p>
 <ol>
@@ -455,7 +450,8 @@ int main(){
 <p><img src="https://img-blog.csdnimg.cn/20200212235021995.png" alt="还不错"></p>
 <p>没有问题，我们程序输出了正确的结果</p>
 <p>但你可能会有一点完美主义情结——<strong>能不能不要让这破程序输出这么多零？</strong></p>
-<p><code>未完待续 2020年2月12日23点50分更新</code><br>如果您有更好的意见或者建议，请在评论区留言，感谢！</p>
+<p>对于这一点其实printf()也给我们提供了设置输出格式的方法，具体可以看<a href="https://blog.csdn.net/qq_29874741/article/details/94626531" target="_blank" rel="noopener">C语言printf()输出格式大全</a>，<strong>自己动手尝试</strong>不同的输出方式才能更快的学会。</p>
+<p>如果您有更好的意见或者建议，请在评论区留言，感谢！</p>
 
             </div>
             <hr/>
@@ -824,38 +820,33 @@ int main(){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/02/c-yu-yan-ji-chu-jiao-cheng-san/">
+                <a href="/2020/02/c-yu-yan-ji-chu-jiao-cheng-si/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="C语言基础教程（三）">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="C语言基础教程（四）">
                         
-                        <span class="card-title">C语言基础教程（三）</span>
+                        <span class="card-title">C语言基础教程（四）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            上一篇，我们讲了printf的基本用法，并写了一个简单的计算器。
-还记得上一篇最后的任务吗？
+                            计算器2.0上一篇所讲的计算器使用起来非常的麻烦，每次都要修改printf函数里的内容并且重新编译程序。
+现在，让我们开始一步一步做出一个这样的计算器：
 
-计算 3/2 的得数
-
-如果你的代码是这样的
-#include &lt;stdio.h>
-int main(){
-    printf("3/2
+从窗口输入我们如何才能让程序读取到我们的输入呢？
+这时候我们就需要用到另一个实用的函
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-11
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-13
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -868,7 +859,6 @@ int main(){
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1121,7 +1111,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">4.3k</span>&nbsp;字
+                class="white-color">4.4k</span>&nbsp;字
             
             
             

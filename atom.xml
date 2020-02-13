@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.antonysun.com/"/>
-  <updated>2020-02-12T15:52:14.311Z</updated>
+  <updated>2020-02-13T15:57:52.978Z</updated>
   <id>http://blog.antonysun.com/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>C语言基础教程（四）</title>
+    <link href="http://blog.antonysun.com/2020/02/c-yu-yan-ji-chu-jiao-cheng-si/"/>
+    <id>http://blog.antonysun.com/2020/02/c-yu-yan-ji-chu-jiao-cheng-si/</id>
+    <published>2020-02-13T15:44:55.000Z</published>
+    <updated>2020-02-13T15:57:52.978Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;计算器2-0&quot;&gt;&lt;a href=&quot;#计算器2-0&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="教程" scheme="http://blog.antonysun.com/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="C" scheme="http://blog.antonysun.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>C语言基础教程（三）</title>
     <link href="http://blog.antonysun.com/2020/02/c-yu-yan-ji-chu-jiao-cheng-san/"/>
     <id>http://blog.antonysun.com/2020/02/c-yu-yan-ji-chu-jiao-cheng-san/</id>
     <published>2020-02-11T13:09:11.000Z</published>
-    <updated>2020-02-12T15:52:14.311Z</updated>
+    <updated>2020-02-13T15:56:21.292Z</updated>
     
     <summary type="html">
     
