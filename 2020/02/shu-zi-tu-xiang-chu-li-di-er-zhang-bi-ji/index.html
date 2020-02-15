@@ -4,9 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C语言基础教程（一）, Anthony&#39;s Blog">
-    <meta name="description" content="关于编程环境网络上有很多C语言编程环境的配置教程，也有很多开箱即用的安装包，请大家自行摸索，对于学习来讲，微软的Visual Studio足以满足我们的需求。
-注意：由于编译器不同，Visual Studio并不完全适合C语言开发，如果您的">
+    <meta name="keywords" content="《数字图像处理》第二章笔记, Anthony&#39;s Blog">
+    <meta name="description" content="图像的获取常见的图像传感器的排列方式有以下几种
+
+成一维的条状平面传感器，给该传感器加上一个垂直的传动带，就可以一行一行的读取数据
+只有一块传感器，通过X，Y方向的位移获取数据
+典型的是传感器放在一根杆上，杆连接在一个圆柱桶上（类似于滑动变">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>C语言基础教程（一） | Anthony&#39;s Blog</title>
+    <title>《数字图像处理》第二章笔记 | Anthony&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -199,12 +202,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C语言基础教程（一）</h1>
+                    <h1 class="description center-align post-title">《数字图像处理》第二章笔记</h1>
                 </div>
             </div>
         </div>
@@ -321,8 +324,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/C/">
-                                <span class="chip bg-color">C</span>
+                            <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                                <span class="chip bg-color">数字图像处理</span>
                             </a>
                         
                     </div>
@@ -333,8 +336,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
-                                教程
+                            <a href="/categories/%E7%AC%94%E8%AE%B0/" class="post-category">
+                                笔记
                             </a>
                         
                     </div>
@@ -346,28 +349,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-08
+                    2020-02-15
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-02-14
+                    2020-02-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    888
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    3 分
                 </div>
                 
 				
@@ -383,86 +386,84 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于编程环境"><a href="#关于编程环境" class="headerlink" title="关于编程环境"></a>关于编程环境</h1><p>网络上有很多C语言编程环境的配置教程，也有很多开箱即用的安装包，请大家自行摸索，对于学习来讲，微软的Visual Studio足以满足我们的需求。</p>
-<p><code>注意：由于编译器不同，Visual Studio并不完全适合C语言开发，如果您的学校有具体的环境要求，还请遵照学校要求</code></p>
-<blockquote>
-<p>对于刚刚接触编程的新手，我本人<strong>不提倡</strong>直接在Linux环境编程（即使这样很装逼），也<strong>不提倡</strong>使用文本编辑器结合控制台指令编译的方式进行学习！</p>
+                <h1 id="图像的获取"><a href="#图像的获取" class="headerlink" title="图像的获取"></a>图像的获取</h1><p>常见的图像传感器的排列方式有以下几种</p>
+<ul>
+<li>成一维的条状平面传感器，给该传感器加上一个垂直的传动带，就可以一行一行的读取数据</li>
+<li>只有一块传感器，通过X，Y方向的位移获取数据<ul>
+<li>典型的是传感器放在一根杆上，杆连接在一个圆柱桶上（类似于滑动变阻器，只不过把滑头变成单独一个传感器），桶上贴着胶片。每次桶先转动然后传感器滑动读取x方向数据，以此来读取一行</li>
+</ul>
+</li>
+<li>核磁共振那样的圆筒，扫描物体的断层信息，需要配合专门的算法生成图片</li>
+<li>传感器阵列，平铺在平面上，比如摄像机的CCD阵列</li>
+<li>传感器获取的主要就是电磁信号<ul>
+<li>这些信号有的是被测物体反射回来的（比如摄像机拍摄的）</li>
+<li>有些信号是穿过被观测物体打在传感器上的（比如X光片）</li>
+</ul>
+</li>
+<li>传感器输出信号强度大小与照射到传感器上电磁信号的强度成正比</li>
+</ul>
+<h1 id="图像模型"><a href="#图像模型" class="headerlink" title="图像模型"></a>图像模型</h1><ul>
+<li><p>现在大家都使用$f(x,y)$这样的二维函数来表示图像。</p>
+</li>
+<li><p>在空间坐标$(x,y)$处$f$的值或幅度是一个正的标量，其物理意义由图像源决定。</p>
+<ul>
+<li>如果图像由物理过程产生，其亮度值正比于物理源（如电磁波）所辐射的能量<ul>
+<li>所以$0&lt;f(x,y)&lt;\infty$（一定是非零有限的）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>函数$f(x,y)$可由两个分量来表征</p>
+<ul>
+<li><p>观察场景的里光源照射总量</p>
+</li>
+<li><p>场景中物体所反射的光照总量</p>
+</li>
+<li><p>这两个量被称为<strong>入射分量</strong>和<strong>反射分量</strong>，而且$f(x,y) = i(x,y)r(x,y)$</p>
+<ul>
+<li><p>分别表示为$i(x,y)$和$r(x,y)$</p>
+<ul>
+<li><p>$0&lt;i(x,y)&lt;\infty$</p>
+</li>
+<li><p>$0&lt;r(x,y)&lt;1$，由于是反射分量，0表示全吸收，1表示全反射，这个取决于被成像物体的性质</p>
+</li>
+<li><blockquote>
+<p>平均来讲，晴朗白天太阳照在地面大概产生$90,000 lm/m^{2}$</p>
+<p>有云的白天可能就下降到$10,000lm/m^2$</p>
+<p>晴朗的夜晚，满月时照度约为$0.1lm/m^2$</p>
+<p>商用办公室典型照度约为$1000lm/m^2$</p>
+<p>下面是$r(x,y)$的典型值</p>
+<p>黑天鹅绒为$0.01$</p>
+<p>不锈钢为$0.65$</p>
+<p>白墙为$0.80$</p>
+<p>镀银金属为$0.90$</p>
+<p>雪为$0.93$</p>
 </blockquote>
-<h1 id="开篇：Hello-World"><a href="#开篇：Hello-World" class="headerlink" title="开篇：Hello World"></a>开篇：Hello World</h1><p>首先，请新建一个空白的文件，重命名为 Hello World.c<br>把下面的东西复制粘贴到你新建的文件里面</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//Hello world.c</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>然后使用您ide的编译运行功能（一般快捷键为<kbd>F5</kbd>)，您应当能看到一个黑色窗口弹出，并显示如下文字<br><img src="https://img-blog.csdnimg.cn/2020020722072394.png" alt="你好，世界！"></p>
-<p><code>没有显示，或者黑窗一闪而过？，请尝试以下代码！</code></p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdlib.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"pause"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>我想现在你一定有很多的疑问，但请不要着急，接下来我会进行说明。</code></p>
-<h2 id="关于printf-“Hello-World”"><a href="#关于printf-“Hello-World”" class="headerlink" title="关于printf(“Hello World”)"></a>关于printf(“Hello World”)</h2><p><strong>究竟是什么东西让我的屏幕上显示出了 Hello World ?</strong></p>
-<p>如果你把程序进行修改，比如把双引号里面的 <em>Hello World</em> 换成 <em>您吃了吗？</em> ，你会发现程序的运行结果也随之改变。<br><strong>e.g.</strong></p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>换为</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"您吃了吗？"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>更进一步，如果你把 <strong>printf(“您吃了吗？”);</strong> 多复制几次，比如这样</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//Hello world.c</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"您吃了吗？"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"您吃了吗？"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"您吃了吗？"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"您吃了吗？"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"您吃了吗？"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p>注意，请保持您新输入的东西在 <strong>int main(){ </strong> 和 <strong>return 0</strong>之间，稍后我会说明原因</p>
-</blockquote>
-<p>再次运行程序，你会发现你的屏幕上出现了一连串来自电脑的亲切的问候.<br><img src="https://img-blog.csdnimg.cn/20200207223123544.png" alt="冬日里温暖的问候"></p>
-<blockquote>
-<p>当然，作为完美主义者，您可能并 <strong>不喜欢这些话挤在一行</strong> ，可如果你尝试在句子里添加回车，你会发现加再多的回车也<strong>没有效果</strong>，甚至会导致程序无法运行，请不要着急，稍后我会说明原因</p>
-</blockquote>
-<p>这时候，相信您已经猜到了，就是这个看起来很奇怪的 <strong>printf(“ “);</strong> 把我们投喂给它的东西放到了屏幕上</p>
-<h3 id="printf-是什么，它是从哪来的？"><a href="#printf-是什么，它是从哪来的？" class="headerlink" title="printf()是什么，它是从哪来的？"></a>printf()是什么，它是从哪来的？</h3><p>还记得我们最开始的程序吗</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//Hello world.c</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>注意看这一句</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><strong>#include</strong>是什么？<br>如果我们说的专业一点就是</p>
-<blockquote>
-<p>#include 是C/C++中包含头文件命令，用于将指定头文件嵌入源文件中。<br>……来自百度百科</p>
-</blockquote>
-<p>当然，这样的解释对于新手来讲未免看的有些云里雾里。<br>为了深刻理解，我们不妨<strong>先删掉</strong>代码中的<code>#include &lt;stdio.h&gt;</code></p>
-<p>我们的程序就变成了这样</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//Hello world.c</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>现在，如果我们重新编译运行程序，我们只会得到一条错误信息：<code>“printf”: 找不到标识符</code></p>
-<p><code>注意：不同的ide对于错误提示可能有所不同</code></p>
-<p>发生了什么？我们的编译器找不到<strong>printf</strong>了</p>
-<p>那么是不是C语言本身并不包含<strong>printf</strong>这个东西，<strong>它其实是存在于其他人写好的文件当中</strong>呢?</p>
-<p>确实是这样，C语言本身不能直接在屏幕上显示文字，<strong>前辈们</strong>为了方便后人编写程序，已经把输出文字的功能写好，并装在了<strong>stdio.h</strong>文件里头</p>
-<p>而 <code>#include&lt;stdio.h&gt;</code> 就是告诉你的编译器把<code>stdio.h</code>这个文件的内容加载到你的程序里面，让你能直接使用前辈的智慧结晶</p>
-<p><code>注意：stdio.h 里并不包含printf的完整实现，之后我会说明清楚</code></p>
-<p>这里面，<strong>前辈写的程序</strong>被<strong>包装</strong>成了<strong>函数</strong>，<strong>函数</strong>有个<strong>名字</strong>叫做<strong>printf</strong></p>
-<p><strong>什么是函数？</strong>，这里我不做过多解释，你完全可以认为<strong>函数就是</strong>一个黑盒子、一个<strong>自动炒菜锅</strong>，你把<strong>菜</strong>放<strong>进括号</strong>，<strong>他给你炒出你要的菜</strong></p>
-<blockquote>
-<p>不懂什么是 <strong>函数</strong> ？ 不要着急，之后我会花一章来慢慢说明</p>
-</blockquote>
-<p>现在，我们知道，<strong>printf</strong>来自<strong>stdio.h</strong>（全称 standard input &amp; output 即标准输入输出）这个文件，它由前辈们编写，为了方便我们编写其他的C程序。</p>
-<p>如果您有建议或者意见，欢迎在评论区留言！</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>对于上面这条，如果是类似X光这样的透射，应该用<strong>透射系数</strong>代替<strong>反射函数</strong>$r(x,y)$</p>
+</li>
+</ul>
+</li>
+<li><p>令单色图像在任何坐标$(x_{0},y_{0})$处<strong>强度（灰度）</strong>（强度和灰度含义相同）表示为$$\ell = f(x_0,y_0)$$</p>
+<ul>
+<li>因为$f(x,y) = i(x,y)r(x,y)$里面$i,r$都有范围，所以$L_{min}\le\ell\le L_{max}$</li>
+<li>理论上只要求$L_{min}$为正，$L_{max}$为有限值。<ul>
+<li>实际上，因为$L_{min} = i_{min}r_{min}$和$L_{max} = i_{max}r_{max}$ 根据之前说的办公室平均照度$i$和反射值$r$，我们希望$L_{min}\approx 10$和$L_{max}\approx 1000$作为室内没有附加照明时的典型范围</li>
+<li>区间$[L_{min},L_{max}]$称为灰度级（或者强度级）。实际情况下通常令该区间为$[0,L-1]$<ul>
+<li>其中$\ell = 0$为灰色</li>
+<li>$\ell = L-1$<strong>在灰度级中</strong>为白色</li>
+<li>所有中间值时从黑色到白色之间变化的灰度色调</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
             </div>
             <hr/>
@@ -488,7 +489,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.antonysun.com/2020/02/c-yu-yan-ji-chu-jiao-cheng-yi/">http://blog.antonysun.com/2020/02/c-yu-yan-ji-chu-jiao-cheng-yi/</a>
+                    <a href="http://blog.antonysun.com/2020/02/shu-zi-tu-xiang-chu-li-di-er-zhang-bi-ji/">http://blog.antonysun.com/2020/02/shu-zi-tu-xiang-chu-li-di-er-zhang-bi-ji/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -526,8 +527,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/C/">
-                                    <span class="chip bg-color">C</span>
+                                <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                                    <span class="chip bg-color">数字图像处理</span>
                                 </a>
                             
                         </div>
@@ -831,53 +832,52 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/02/c-yu-yan-ji-chu-jiao-cheng-er/">
+                <a href="/2020/02/shu-zi-tu-xiang-chu-li-di-er-zhang-bi-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="C语言基础教程（二）">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="《数字图像处理》第二章笔记">
                         
-                        <span class="card-title">C语言基础教程（二）</span>
+                        <span class="card-title">《数字图像处理》第二章笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            简单计算器
-回顾：在上一篇的教程中，我们了解了printf的功能和它的由来
+                            图像的获取常见的图像传感器的排列方式有以下几种
 
-还记得我们上一篇的代码吗？
-//Hello world.c
-#include &lt;stdio.h>
-int main(){
-    printf("Hello
+成一维的条状平面传感器，给该传感器加上一个垂直的传动带，就可以一行一行的读取数据
+只有一块传感器，通过X，Y方向的位移获取数据
+典型的是传感器放在一根杆上，杆连接在一个圆柱桶上（类似于滑动变
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
-                                    教程
+                            <a href="/categories/%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    笔记
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C</span>
+                    <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                        <span class="chip bg-color">数字图像处理</span>
                     </a>
                     
                 </div>
@@ -888,28 +888,31 @@ int main(){
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/02/c-yu-yan-ji-chu-jiao-cheng-yi/">
+                <a href="/2020/02/c-yu-yan-ji-chu-jiao-cheng-si/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="C语言基础教程（一）">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="C语言基础教程（四）">
                         
-                        <span class="card-title">C语言基础教程（一）</span>
+                        <span class="card-title">C语言基础教程（四）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于编程环境网络上有很多C语言编程环境的配置教程，也有很多开箱即用的安装包，请大家自行摸索，对于学习来讲，微软的Visual Studio足以满足我们的需求。
-注意：由于编译器不同，Visual Studio并不完全适合C语言开发，如果您的
+                            计算器2.0上一篇所讲的计算器使用起来非常的麻烦，每次都要修改printf函数里的内容并且重新编译程序。
+现在，让我们开始一步一步做出一个这样的计算器：
+
+从窗口输入我们如何才能让程序读取到我们的输入呢？
+这时候我们就需要用到另一个实用的函
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-13
                             </span>
                         <span class="publish-author">
                             
@@ -923,7 +926,6 @@ int main(){
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1102,6 +1104,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
     <footer class="page-footer bg-color">
