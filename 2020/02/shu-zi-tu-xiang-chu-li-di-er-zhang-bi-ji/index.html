@@ -362,14 +362,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    990
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 				
@@ -466,7 +466,28 @@
 </ul>
 </li>
 </ul>
-<h1 id="图像的取样和量化"><a href="#图像的取样和量化" class="headerlink" title="图像的取样和量化"></a>图像的取样和量化</h1>
+<h1 id="图像的取样和量化"><a href="#图像的取样和量化" class="headerlink" title="图像的取样和量化"></a>图像的取样和量化</h1><ul>
+<li>取样需要离散化图片的灰度值和图像上连续的灰度值函数（书P30图2.1.6形象说明）<ul>
+<li>每个点的灰度值按照就近原则对应到不同的灰度级（例子给了八个级别）</li>
+</ul>
+</li>
+</ul>
+<h1 id="图像的表示"><a href="#图像的表示" class="headerlink" title="图像的表示"></a>图像的表示</h1><ul>
+<li>离散图像在任一$(x,y)$处的值记为$f(x,y)$<ul>
+<li>$x = 0,1,2,…,M-1$，$y=0,1,2,…,N-1$</li>
+<li>$f(0,1)$表示<strong>第一行第二个</strong>像素的值</li>
+</ul>
+</li>
+<li>二维图像可由$x,y$轴和另外的$z$轴（高低代表灰度值）的三维图像表示（太复杂了，通常不用）</li>
+<li>用显示器或打印机，每个像素点的灰度值与该点的$f$值成正比</li>
+<li><strong>把$f(x,y)$表示为数值阵列</strong></li>
+<li>使用矩阵表示数字图像及其像素$A = $ 一个矩阵<ul>
+<li>$a_{ij} = f(x=i,y=j) = f(i,j)$</li>
+<li>灰度级数通常取2的整数次幂，$L=2^k$</li>
+</ul>
+</li>
+</ul>
+
             </div>
             <hr/>
 
@@ -1125,7 +1146,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">5.6k</span>&nbsp;字
+                class="white-color">5.9k</span>&nbsp;字
             
             
             
