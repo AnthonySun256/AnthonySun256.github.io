@@ -29,9 +29,9 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -362,14 +362,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    2.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    8 分
                 </div>
                 
 				
@@ -544,6 +544,40 @@
 </li>
 <li><p>式子中的四个系数可用由点$(x,y)$的四个最邻近点写出的未知方程确定</p>
 </li>
+</ul>
+</li>
+<li><p>双三次内插法，包括16个最邻近点（最常用）</p>
+</li>
+</ul>
+<h1 id="像素间的基本关系"><a href="#像素间的基本关系" class="headerlink" title="像素间的基本关系"></a>像素间的基本关系</h1><ul>
+<li><p>相邻像素</p>
+<ul>
+<li>上下左右四个像素称为4邻域，用$N_4(P)$表示。</li>
+<li>左上右上左下右下四个像素用$N_D(P)$表示</li>
+<li>八个相邻像素称为8邻域，用$N_8(P)$表示</li>
+</ul>
+</li>
+<li><p>邻接、连接和连通，这篇<a href="https://www.cnblogs.com/SilentCode/p/5352860.html" target="_blank" rel="noopener">博客</a>有讲</p>
+<ul>
+<li>闭合通路（连通的起点和终点一样）</li>
+<li>连通集：只有一个连通分量的集合<strong>也可称作区域</strong></li>
+</ul>
+</li>
+<li><p>如果两个区域（$R_i和R_j$）可以形成一个<strong>连通集</strong>，他们叫做<strong>邻接区域</strong>，不邻接的区域称为不连接区域</p>
+<ul>
+<li>四邻接：上下左右四个点</li>
+<li>八邻接：上下左右加上四个角，这样的一圈（<strong>所以属于4邻接的一定属于8邻接</strong>，反过来不行）</li>
+<li>M邻接：同时存在八邻接和四邻接时候优先用四邻接（<strong>消除二义性</strong>）</li>
+<li><a href="https://www.cnblogs.com/qinguoyi/p/7601178.html" target="_blank" rel="noopener">m邻接 </a></li>
+</ul>
+</li>
+<li><p>两点间距离，设两点$P(x,y)$和$Q(s,t)$</p>
+<ul>
+<li>欧氏距离$D_e = \sqrt{(x-s)^2+(y-t)^2}$</li>
+<li>曼哈顿距离（城市街区距离）$D_4 = |x-s|+|y-t|$，$D_4 = 1$时为像素的四邻域</li>
+<li>棋盘距离 $D_8 = max(|x-s|,|y-t|)$，$D_8 = 1$时为像素的八邻域</li>
+<li>$D_4$和$D_8$距离与任何通路<strong>无关</strong>这俩距离只与坐标有关</li>
+<li>$D_m$距离用两点间的最短通路定义（按照m邻接方式计算）</li>
 </ul>
 </li>
 </ul>
@@ -1206,7 +1240,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">6.5k</span>&nbsp;字
+                class="white-color">6.9k</span>&nbsp;字
             
             
             
