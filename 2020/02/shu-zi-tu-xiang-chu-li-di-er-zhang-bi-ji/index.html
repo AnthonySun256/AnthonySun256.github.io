@@ -29,9 +29,9 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -355,21 +355,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-02-15
+                    2020-02-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    7 分
                 </div>
                 
 				
@@ -483,7 +483,67 @@
 <li><strong>把$f(x,y)$表示为数值阵列</strong></li>
 <li>使用矩阵表示数字图像及其像素$A = $ 一个矩阵<ul>
 <li>$a_{ij} = f(x=i,y=j) = f(i,j)$</li>
-<li>灰度级数通常取2的整数次幂，$L=2^k$</li>
+<li>灰度级数通常取2的整数次幂，$L=2^k$ </li>
+</ul>
+</li>
+<li>动态范围：一幅图片可能不会占用全部256 ($2^8$)级灰度，图片里面所有像素跨越的灰度值称为动态范围<ul>
+<li>比如一幅图片很暗，它可能的动态范围可能只有 $[0,100]$ ，而不是全部$[0,256]$（256是因为现在主流每个像素用8bit表示，可以表示256级灰度）</li>
+<li>上限取决于饱和度，下限取决于噪声</li>
+</ul>
+</li>
+<li>对比度：图像中最高级灰度和最低级灰度的差成为对比度<ul>
+<li>动态范围高对比度高，反之低动态范围的图片看起来很沉闷</li>
+</ul>
+</li>
+<li>存储一幅图像所需bit $b = M<em>N</em>k$ （长乘宽乘用几个比特表示灰度级）</li>
+</ul>
+<h1 id="空间和灰度分辨率"><a href="#空间和灰度分辨率" class="headerlink" title="空间和灰度分辨率"></a>空间和灰度分辨率</h1><ul>
+<li><p><strong>空间分辨率</strong>用来度量图像中最小可辨细节</p>
+<ul>
+<li>通常用单位距离的线对数和单位距离的点数（像素数）</li>
+<li>美国的印刷品使用的单位：dpi 表示每英寸的点数</li>
+<li><strong>空间分辨率</strong>需要对空间的<strong>单位</strong>有定义才有实际意义（不然单位距离到底是多少）</li>
+</ul>
+</li>
+<li><p>不知道图像包含的空间维数，谈论图像的分辨率（比如说某图是1024*1024像素）是没有意义的。尺寸本身只用在比较图像容量时</p>
+<ul>
+<li>可以说拍摄情况相同时候高清相机比普通相机分辨细节的能力高</li>
+</ul>
+</li>
+<li><p><strong>灰度分辨率</strong>指在灰度级中可分辨的最小变化</p>
+<ul>
+<li>指的是用于量化灰度的比特数，比如256级的图像具有8bit的灰度分辨率</li>
+</ul>
+</li>
+<li><p>减少k值（灰度分辨率）会提高图像对比度</p>
+<ul>
+<li><blockquote>
+<p>百度的解释：</p>
+<p>对比度指的是一幅图像中明暗区域最亮的白和最暗的黑之间不同亮度层级的测量，差异范围的大小就是所说的对比度的大小.<br>减少灰度一级,就是说,灰的再暗一些的意思,这样图像的层次与艳丽会提高一档.<br>方便的话,可以用photoshop 里的色阶,就一目了然了.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="图像内插"><a href="#图像内插" class="headerlink" title="图像内插"></a>图像内插</h1><blockquote>
+<p>内插是放大、收缩、旋转、几何校正等任务的基本工具</p>
+<p>本质上内插是用已知的数据去估计未知的数据</p>
+</blockquote>
+<h2 id="放大的插值方法"><a href="#放大的插值方法" class="headerlink" title="放大的插值方法"></a>放大的插值方法</h2><ul>
+<li><p>最邻近内插（P37）</p>
+</li>
+<li><p>双线性内插</p>
+<ul>
+<li><p>令$(x,y)$为我们想要赋值的位置，令$v(x,y)$表示灰度值。</p>
+</li>
+<li><p>$v(x,y) = ax+by+cxy+d$  </p>
+</li>
+<li><blockquote>
+<p>由于具有$xy$项，这其实不是一种线性内插方法，但不知道为啥名字里有线性二字</p>
+</blockquote>
+</li>
+<li><p>式子中的四个系数可用由点$(x,y)$的四个最邻近点写出的未知方程确定</p>
+</li>
 </ul>
 </li>
 </ul>
@@ -1146,7 +1206,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">5.9k</span>&nbsp;字
+                class="white-color">6.5k</span>&nbsp;字
             
             
             
