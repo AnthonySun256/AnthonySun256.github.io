@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.antonysun.com/"/>
-  <updated>2020-02-17T15:30:47.099Z</updated>
+  <updated>2020-02-17T15:33:08.506Z</updated>
   <id>http://blog.antonysun.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://blog.antonysun.com/2020/02/shu-zi-tu-xiang-chu-li-di-er-zhang-bi-ji/"/>
     <id>http://blog.antonysun.com/2020/02/shu-zi-tu-xiang-chu-li-di-er-zhang-bi-ji/</id>
     <published>2020-02-15T14:22:25.000Z</published>
-    <updated>2020-02-17T15:30:47.099Z</updated>
+    <updated>2020-02-17T15:33:08.506Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,9 @@
       
         
         
-          &lt;h1 id=&quot;关于人眼&quot;&gt;&lt;a href=&quot;#关于人眼&quot; class=&quot;headerlink&quot;
+          &lt;p&gt;这篇文章是《数字图像处理（第三版）》的学习笔记，方便日后回忆和查看&lt;/p&gt;
+&lt;p&gt;对于一些难懂的知识加入了一些自己的理解和其他讲的比较明白的博客的链接&lt;/p&gt;
+&lt;h1 id=&quot;关于人眼&quot;&gt;&lt;a href=&quot;#关于人眼&quot; class=&quot;headerlink&quot;
         
       
     
