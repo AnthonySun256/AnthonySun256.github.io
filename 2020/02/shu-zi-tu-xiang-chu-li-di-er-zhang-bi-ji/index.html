@@ -29,9 +29,9 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -362,14 +362,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    10 分
                 </div>
                 
 				
@@ -591,7 +591,63 @@
 </ul>
 <h1 id="算数操作"><a href="#算数操作" class="headerlink" title="算数操作"></a>算数操作</h1><ul>
 <li>相同size图片之间的加减乘除（<strong>注意都是对应元素之间的操作</strong>，就是Matlab里的点乘）</li>
+<li>为了避免出现图像算术操作出现像素值$&lt;0$或者$&gt;255$的情况，对每幅图像进行如下操作<ul>
+<li>$f_m = f-min(f)$</li>
+<li>$f_s =  K[f_m/max(f_m+\delta)]$ 这样，像素值都在$[0,K]$之间，8bit图像就令K=255<ul>
+<li>加$\delta$是为了防止出现除零的情况</li>
 </ul>
+</li>
+<li>该方法可以用于 16bit或者更高比特的图像</li>
+</ul>
+</li>
+</ul>
+<h1 id="集合操作"><a href="#集合操作" class="headerlink" title="集合操作"></a>集合操作</h1><ul>
+<li><p>和数学上的集合运算相同</p>
+</li>
+<li><p>集合里的元素是坐标$(x,y)$</p>
+</li>
+<li><p>默认集合里元素的灰度值是<strong>相同的</strong>（二值图像最适合）</p>
+</li>
+<li><p>灰度图像集合元素是三元的$(x,y,z)$，xy是坐标，z是灰度值</p>
+<ul>
+<li>集合$A = {(x,y,z)}$的补集$A^c = {(x,y,K-z)|(x,y,z)\in A}$<ul>
+<li>$K = 2^k-1$，8bit的就是K = 255</li>
+</ul>
+</li>
+<li>两个灰度集合的并集$$A\bigcup B = {max(a,b)|a\in A,b \in B}$$</li>
+</ul>
+</li>
+<li><p>逻辑操作（适用于二值图像）</p>
+<ul>
+<li>和数学中逻辑操作相同</li>
+<li>OR AND 也可以看作集合的操作</li>
+</ul>
+</li>
+<li><p>模糊集合</p>
+<ul>
+<li>在第三章会讲</li>
+</ul>
+</li>
+</ul>
+<h1 id="空间操作"><a href="#空间操作" class="headerlink" title="空间操作"></a>空间操作</h1><p>分为以下几类</p>
+<ol>
+<li><p>单像素操作</p>
+<ul>
+<li>改变单个像素的灰度值</li>
+</ul>
+<p>$$s = T(z)$$</p>
+<ul>
+<li>z源像素灰度，s是变换之后像素灰度</li>
+</ul>
+</li>
+<li><p>邻域操作</p>
+<ul>
+<li>令$S_{xy}$代表图像f中以任意一点$(x,y)$为中心的一个邻域的<strong>坐标集</strong></li>
+</ul>
+</li>
+<li><p>集合空间变换</p>
+</li>
+</ol>
 
             </div>
             <hr/>
@@ -1251,7 +1307,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.1k</span>&nbsp;字
+                class="white-color">7.4k</span>&nbsp;字
             
             
             
