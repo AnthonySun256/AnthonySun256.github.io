@@ -29,9 +29,9 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -355,21 +355,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-02-17
+                    2020-02-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.8k
+                    3.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    10 分
+                    13 分
                 </div>
                 
 				
@@ -644,12 +644,58 @@
 </li>
 <li><p>邻域操作</p>
 <ul>
-<li>令$S_{xy}$代表图像f中以任意一点$(x,y)$为中心的一个邻域的<strong>坐标集</strong></li>
+<li><p>令$S_{xy}$代表图像f中以任意一点$(x,y)$为中心的一个邻域的<strong>坐标集</strong></p>
+</li>
+<li><p>邻域处理再输出图像$g$中相同的坐标处生成一个相应的像素，生成值由输入坐标在$S_{xy}$内的像素经过操作决定（操作由你自己定义）</p>
+</li>
+<li><blockquote>
+<p>比如取平均值操作$$g(x,y) = \frac{1}{mn}\sum_{(r,c)\in S_{xy}}f(r,c)$$</p>
+</blockquote>
+</li>
 </ul>
 </li>
-<li><p>集合空间变换</p>
+<li><p>几何空间变换</p>
 </li>
 </ol>
+<p>几何空间变换由两个基本操作组成 1）坐标的空间变换    2）灰度内插，即对空间变换后的像$素$赋灰度值</p>
+<ul>
+<li>坐标变换可由下式表示：$$(x,y) = T{(v,w)}$$<ul>
+<li>$(v,w)$是原图像中的像素坐标，$(x,y)$是变换后图像中像素坐标、</li>
+<li>比如$(x,y) = T{(v,w) = (v/2,w/2)}$表示在两个方向上把源图像缩小一半</li>
+<li>最常用空间坐标变换：<strong>仿射变换</strong>；形式如下$$[x\space y\space 1] = [v\space w\space 1]\boldsymbol{A}=[x\space y\space 1]\begin{bmatrix}t_{11}&amp;t_{12}&amp;0 \\t_{21}&amp;t_{22}&amp;0\\t_{31}&amp;t_{32}&amp;1 \end{bmatrix}$$</li>
+<li>上边的式子是<strong>前向映射</strong>，容易出现多个像素映射到同一点的情况，可以用<strong>反向映射</strong>解决$$(v,w) = \boldsymbol{T^{-1}}(x,y)$$</li>
+</ul>
+</li>
+<li>估计变换函数：选取一定量的校准点（比如我取四个点），有一个参考图像，在两幅图像的相同位置进行标记<ul>
+<li>假设变换方程 $x = c_1v+c_2w+c_3vw+c_4$， $y = c_5v+c_6w+c_7vw+c_8 $</li>
+<li>带入四个点的坐标求出系数</li>
+<li>带入系数求其他的点</li>
+</ul>
+</li>
+</ul>
+<h1 id="向量与矩阵的操作"><a href="#向量与矩阵的操作" class="headerlink" title="向量与矩阵的操作"></a>向量与矩阵的操作</h1><ul>
+<li>对于RGB图像，可以把图像这样表示$$\boldsymbol z = \begin{bmatrix} z_1\\z_2\\z_3\end{bmatrix}$$</li>
+<li>$z_1\space z_2 \space z_3$分别代表RGB层</li>
+<li>可以用向量和矩阵的操作方法操作图片<ul>
+<li>线性变换$w = A(z-a)$，A是m*n的矩阵，z和a是n*1的列向量</li>
+<li>线性处理：$g = Hf+n$，f是输入图像，H是操作，n是噪声</li>
+</ul>
+</li>
+</ul>
+<h1 id="图像变换"><a href="#图像变换" class="headerlink" title="图像变换"></a>图像变换</h1><p>主要就是空间域和变换域的问题，<a href="https://blog.csdn.net/ice__snow/article/details/78633143" target="_blank" rel="noopener">这个博客讲的不错</a></p>
+<h1 id="概率方法"><a href="#概率方法" class="headerlink" title="概率方法"></a>概率方法</h1><ul>
+<li>统计某一灰度级出现的概率可估计为$p(z_k) = \frac{n_k}{MN}$<ul>
+<li>$\sum^{L-1}_{k=0}p(z_k)=1$</li>
+<li>方差$\sigma^2 = \sum^{L-1}_{k=0}(z_k-m)^2p(z_k)$</li>
+<li>n阶矩$\mu_n(z) = \sum^{L-1}_{k=0}(z_k-m)^np(z_k)$</li>
+</ul>
+</li>
+<li>均值和方差与图片的视觉特性有明显的直接关系，高阶矩更敏感<ul>
+<li>比如三阶矩&gt;0表示灰度倾向于比均值高&lt;0说明灰度倾向于比均值低，0说明灰度近似相等的分布在均值附近</li>
+</ul>
+</li>
+<li>概率方法在后面的图像处理中很有用</li>
+</ul>
 
             </div>
             <hr/>
@@ -1309,7 +1355,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.5k</span>&nbsp;字
+                class="white-color">8.1k</span>&nbsp;字
             
             
             
