@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.antonysun.com/"/>
-  <updated>2020-02-18T15:11:59.980Z</updated>
+  <updated>2020-02-19T15:29:15.770Z</updated>
   <id>http://blog.antonysun.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《数字图像处理》第三章笔记</title>
+    <link href="http://blog.antonysun.com/2020/02/shu-zi-tu-xiang-chu-li-di-san-zhang-bi-ji/"/>
+    <id>http://blog.antonysun.com/2020/02/shu-zi-tu-xiang-chu-li-di-san-zhang-bi-ji/</id>
+    <published>2020-02-19T15:09:08.000Z</published>
+    <updated>2020-02-19T15:29:15.770Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;本章主要讲的是&lt;strong&gt;空间域&lt;/strong&gt;的操作（即图像本身）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;本章主要讨论形如$g(x,y) =
+        
+      
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="http://blog.antonysun.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="数字图像处理" scheme="http://blog.antonysun.com/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>《数字图像处理》第二章笔记</title>
@@ -161,7 +191,7 @@
     <link href="http://blog.antonysun.com/2020/02/c-yu-yan-ji-chu-jiao-cheng-yi/"/>
     <id>http://blog.antonysun.com/2020/02/c-yu-yan-ji-chu-jiao-cheng-yi/</id>
     <published>2020-02-08T15:08:18.000Z</published>
-    <updated>2020-02-13T16:05:20.128Z</updated>
+    <updated>2020-02-19T12:24:27.873Z</updated>
     
     <summary type="html">
     

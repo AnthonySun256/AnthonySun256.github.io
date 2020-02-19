@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>《数字图像处理》第三章笔记</title>
+      <link href="/2020/02/shu-zi-tu-xiang-chu-li-di-san-zhang-bi-ji/"/>
+      <url>/2020/02/shu-zi-tu-xiang-chu-li-di-san-zhang-bi-ji/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>本章主要讲的是<strong>空间域</strong>的操作（即图像本身）</p></blockquote><p>本章主要讨论形如$g(x,y) = T[f(x,y)]$的灰度变换和空间滤波</p><p>上面的公式也可以写成更一般的形式$$s = T(r)$$</p><ul><li><p>$s、r$分别表示输出图像和源图像</p></li><li><p>操作$T$可以是对邻域的操作（比如对图像进行模糊操作）</p></li></ul><p>灰度变换和空间滤波可用于<strong>图像增强</strong></p><p>灰度变换可以是一个简单的映射（比如$T$代表查表操作，源图像每一个灰度值在表里头都有一个对应的灰度值作为输出）</p><h1 id="基本灰度变换函数"><a href="#基本灰度变换函数" class="headerlink" title="基本灰度变换函数"></a>基本灰度变换函数</h1><h2 id="图像反转"><a href="#图像反转" class="headerlink" title="图像反转"></a>图像反转</h2><p>$s = 255 - r$，就是一个8bit灰度图像的反转方法，可以做出来底片的效果</p><h2 id="对数变换"><a href="#对数变换" class="headerlink" title="对数变换"></a>对数变换</h2><p>$$s = c\log{(1+r)}, r\ge0,c=const$$</p><p>可以把灰度值中范围较窄<strong>低灰度值</strong>范围映射到一个范围较宽的灰度值范围，或者把范围较宽的<strong>高灰度值</strong>范围压缩为范围较窄的灰度值范围</p><ul><li>用来拓展图片中<strong>暗的像素</strong>（让本来暗的地方亮一些），同时压缩高灰度</li><li><strong>反对数函数</strong>作用效果正好相反</li><li>以上结论可以看对数函数图像得知</li><li>对数变换可用于傅里叶频谱的校正（傅里叶频谱输出值很大($10^6$级别)会丢失灰度值小的像素信息（因为只用8bit存储），但取对数后可以压缩为个位数防止信息丢失过多）</li></ul><h2 id="幂律（伽马）变换"><a href="#幂律（伽马）变换" class="headerlink" title="幂律（伽马）变换"></a>幂律（伽马）变换</h2><p>$$s = cr^\gamma$$</p><ul><li>$\gamma &gt;1$和$\gamma &lt;1$时的效果<strong>完全相反</strong></li><li>用于伽马矫正，压缩一些灰度范围，扩展一些灰度范围</li><li>可以增强对比度</li><li>增强暗部，或者减少亮部</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数字图像处理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>《数字图像处理》第二章笔记</title>
       <link href="/2020/02/shu-zi-tu-xiang-chu-li-di-er-zhang-bi-ji/"/>
       <url>/2020/02/shu-zi-tu-xiang-chu-li-di-er-zhang-bi-ji/</url>

@@ -4,16 +4,16 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C语言基础教程（三）, Anthony&#39;s Blog">
-    <meta name="description" content="上一篇，我们讲了printf的基本用法，并写了一个简单的计算器。
-还记得上一篇最后的任务吗？
+    <meta name="keywords" content="《数字图像处理》第三章笔记, Anthony&#39;s Blog">
+    <meta name="description" content="
+本章主要讲的是空间域的操作（即图像本身）
 
-计算 3/2 的得数
+本章主要讨论形如$g(x,y) = T[f(x,y)]$的灰度变换和空间滤波
+上面的公式也可以写成更一般的形式$$s = T(r)$$
 
-如果你的代码是这样的
-#include &amp;lt;stdio.h&gt;
-int main(){
-    printf(&#34;3/2">
+$s、r$分别表示输出图像和源图像
+
+操作$T$可以是对">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +21,7 @@ int main(){
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>C语言基础教程（三） | Anthony&#39;s Blog</title>
+    <title>《数字图像处理》第三章笔记 | Anthony&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -206,12 +206,12 @@ int main(){
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C语言基础教程（三）</h1>
+                    <h1 class="description center-align post-title">《数字图像处理》第三章笔记</h1>
                 </div>
             </div>
         </div>
@@ -328,8 +328,8 @@ int main(){
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/C/">
-                                <span class="chip bg-color">C</span>
+                            <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                                <span class="chip bg-color">数字图像处理</span>
                             </a>
                         
                     </div>
@@ -340,8 +340,8 @@ int main(){
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
-                                教程
+                            <a href="/categories/%E7%AC%94%E8%AE%B0/" class="post-category">
+                                笔记
                             </a>
                         
                     </div>
@@ -353,28 +353,28 @@ int main(){
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-11
+                    2020-02-19
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-02-13
+                    2020-02-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    464
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 				
@@ -390,68 +390,35 @@ int main(){
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>上一篇，我们讲了printf的基本用法，并写了一个简单的计算器。</p>
-<p>还记得上一篇最后的<strong>任务</strong>吗？</p>
-<blockquote>
-<p>计算 3/2 的得数</p>
+                <blockquote>
+<p>本章主要讲的是<strong>空间域</strong>的操作（即图像本身）</p>
 </blockquote>
-<p>如果你的代码是这样的</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"3/2 = %d"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>那我们的程序会输出一个很奇怪的结果：<strong><em>1</em></strong></p>
-<h1 id="为什么3-2会等于1？"><a href="#为什么3-2会等于1？" class="headerlink" title="为什么3/2会等于1？"></a>为什么3/2会等于1？</h1><p>要说明这个问题我们有必要先了解C语言是怎样存储和表示数字和字符的</p>
-<h2 id="C语言基本数据类型"><a href="#C语言基本数据类型" class="headerlink" title="C语言基本数据类型"></a>C语言基本数据类型</h2><p>C语言有六种基本数据类型，他们分别是 short、long、int、float、double、char</p>
-<p>在内存中，不同的类型占用不同的空间，short占2byte，int占4byte，long占4byte，float占2byte，double占8byte，char占1byte</p>
-<blockquote>
-<p>​    注：这个不绝对，可能会有所出入，应视具体情况而定</p>
-</blockquote>
-<h3 id="为什么引入数据类型"><a href="#为什么引入数据类型" class="headerlink" title="为什么引入数据类型"></a>为什么引入数据类型</h3><blockquote>
-<p>如果你实在想知道，那我推荐这篇博文 <a href="https://www.2cto.com/kf/201707/654323.html" target="_blank" rel="noopener">数据类型的本质</a></p>
-<blockquote>
-<p>不懂什么是变量？不要着急，本篇后面会说明清楚</p>
-</blockquote>
-<p>不知道为什么并不影响你学习C语言</p>
-</blockquote>
-<h3 id="数据类型相互转化"><a href="#数据类型相互转化" class="headerlink" title="数据类型相互转化"></a>数据类型相互转化</h3><p>C语言是允许不同类型的数据相互转化的，但因为C语言内部存储机制的问题，有些时候这种转化会导致你丢失一些东西</p>
-<p>比如，int类型表示的是整数，如果你把一个小数转换成整数，我们只能得到这个小数的整数部分，它小数点后面的部分都被丢弃了</p>
-<blockquote>
-<p>在程序中使用 类型名称(数据) ，可以强制转换类型</p>
-<p>例如 int(1.5)可以把1.5这个小数转为int类型（但是只能得到1，小数部分被自动丢掉了）</p>
-</blockquote>
-<h3 id="为什么我们的程序输出了整数？"><a href="#为什么我们的程序输出了整数？" class="headerlink" title="为什么我们的程序输出了整数？"></a>为什么我们的程序输出了整数？</h3><p>理论上来讲3/2应该得到 1.5，根据分类，这应该是一个float或者double类型的小数，但是我们的程序却输出了 1 这个int类型的整数</p>
-<p>这是因为有些时候C语言会自动帮你完成类型转换这一过程</p>
-<p>还记得我们的程序吗</p>
-<p>因为$3/2$所使用的<strong>两个数都是int类型</strong>，C语言会自动把他们的计算结果转换成整数，导致我们小数点后面数据的丢失</p>
-<h3 id="如果修正？"><a href="#如果修正？" class="headerlink" title="如果修正？"></a>如果修正？</h3><p>这里有两个方法修正我们的程序</p>
-<ol>
-<li>根据<a href="https://www.cnblogs.com/weiyouqing/p/9090542.html" target="_blank" rel="noopener">C语言中不同类型的数据转换规则</a> （可点击进入查看转换规则），我们可以把表达式改为$3.0/2$（或者$3/2.0$、$3.0/2.0$）这样C语言会把表达式的结果记float类型</li>
-<li>通过强制类型转换，我们可以强制把3变为浮点数<code>float(3)</code>或者把2变为浮点数<code>float(2)</code>，得到<code>float(3)/2</code>【或者<code>3/float(2)</code>、<code>float(3)/float(2)</code>】来达到我们的目的</li>
-</ol>
-<blockquote>
-<p>注意：<code>float(3/2)</code>是不可以的，因为计算机在算$3/2$的时候就已经进行了丢弃数据（小数点后面内容）的操作，被丢掉的内容是无法还原的</p>
-</blockquote>
-<p>也许你已经改完了程序，它现在看起来是这样的</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"3/2 = %d"</span><span class="token punctuation">,</span> <span class="token number">3.0</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="如果这时候运行程序，我们还是无法得到正确的答案"><a href="#如果这时候运行程序，我们还是无法得到正确的答案" class="headerlink" title="如果这时候运行程序，我们还是无法得到正确的答案"></a>如果这时候运行程序，我们还是无法得到正确的答案</h4><p>还记得之前所讲的<strong>占位符</strong>吗，对于int类型的数据，我们可以通过在文字里加上%d给整数占个位子。但现在时代变了，要想为$1.5$这个浮点数占个位子我们需要用<code>%f​</code></p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"3/2 = %f"</span><span class="token punctuation">,</span> <span class="token number">3.0</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>运行一下</p>
-<p><img src="https://img-blog.csdnimg.cn/20200212235021995.png" alt="还不错"></p>
-<p>没有问题，我们程序输出了正确的结果</p>
-<p>但你可能会有一点完美主义情结——<strong>能不能不要让这破程序输出这么多零？</strong></p>
-<p>对于这一点其实printf()也给我们提供了设置输出格式的方法，具体可以看<a href="https://blog.csdn.net/qq_29874741/article/details/94626531" target="_blank" rel="noopener">C语言printf()输出格式大全</a>，<strong>自己动手尝试</strong>不同的输出方式才能更快的学会。</p>
-<p>如果您有更好的意见或者建议，请在评论区留言，感谢！</p>
+<p>本章主要讨论形如$g(x,y) = T[f(x,y)]$的灰度变换和空间滤波</p>
+<p>上面的公式也可以写成更一般的形式$$s = T(r)$$</p>
+<ul>
+<li><p>$s、r$分别表示输出图像和源图像</p>
+</li>
+<li><p>操作$T$可以是对邻域的操作（比如对图像进行模糊操作）</p>
+</li>
+</ul>
+<p>灰度变换和空间滤波可用于<strong>图像增强</strong></p>
+<p>灰度变换可以是一个简单的映射（比如$T$代表查表操作，源图像每一个灰度值在表里头都有一个对应的灰度值作为输出）</p>
+<h1 id="基本灰度变换函数"><a href="#基本灰度变换函数" class="headerlink" title="基本灰度变换函数"></a>基本灰度变换函数</h1><h2 id="图像反转"><a href="#图像反转" class="headerlink" title="图像反转"></a>图像反转</h2><p>$s = 255 - r$，就是一个8bit灰度图像的反转方法，可以做出来底片的效果</p>
+<h2 id="对数变换"><a href="#对数变换" class="headerlink" title="对数变换"></a>对数变换</h2><p>$$s = c\log{(1+r)}, r\ge0,c=const$$</p>
+<p>可以把灰度值中范围较窄<strong>低灰度值</strong>范围映射到一个范围较宽的灰度值范围，或者把范围较宽的<strong>高灰度值</strong>范围压缩为范围较窄的灰度值范围</p>
+<ul>
+<li>用来拓展图片中<strong>暗的像素</strong>（让本来暗的地方亮一些），同时压缩高灰度</li>
+<li><strong>反对数函数</strong>作用效果正好相反</li>
+<li>以上结论可以看对数函数图像得知</li>
+<li>对数变换可用于傅里叶频谱的校正（傅里叶频谱输出值很大($10^6$级别)会丢失灰度值小的像素信息（因为只用8bit存储），但取对数后可以压缩为个位数防止信息丢失过多）</li>
+</ul>
+<h2 id="幂律（伽马）变换"><a href="#幂律（伽马）变换" class="headerlink" title="幂律（伽马）变换"></a>幂律（伽马）变换</h2><p>$$s = cr^\gamma$$</p>
+<ul>
+<li>$\gamma &gt;1$和$\gamma &lt;1$时的效果<strong>完全相反</strong></li>
+<li>用于伽马矫正，压缩一些灰度范围，扩展一些灰度范围</li>
+<li>可以增强对比度</li>
+<li>增强暗部，或者减少亮部</li>
+</ul>
 
             </div>
             <hr/>
@@ -477,7 +444,7 @@ int main(){
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.antonysun.com/2020/02/c-yu-yan-ji-chu-jiao-cheng-san/">http://blog.antonysun.com/2020/02/c-yu-yan-ji-chu-jiao-cheng-san/</a>
+                    <a href="http://blog.antonysun.com/2020/02/shu-zi-tu-xiang-chu-li-di-san-zhang-bi-ji/">http://blog.antonysun.com/2020/02/shu-zi-tu-xiang-chu-li-di-san-zhang-bi-ji/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -515,8 +482,8 @@ int main(){
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/C/">
-                                    <span class="chip bg-color">C</span>
+                                <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                                    <span class="chip bg-color">数字图像处理</span>
                                 </a>
                             
                         </div>
@@ -820,50 +787,56 @@ int main(){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/02/c-yu-yan-ji-chu-jiao-cheng-si/">
+                <a href="/2020/02/shu-zi-tu-xiang-chu-li-di-san-zhang-bi-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="C语言基础教程（四）">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="《数字图像处理》第三章笔记">
                         
-                        <span class="card-title">C语言基础教程（四）</span>
+                        <span class="card-title">《数字图像处理》第三章笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            计算器2.0上一篇所讲的计算器使用起来非常的麻烦，每次都要修改printf函数里的内容并且重新编译程序。
-现在，让我们开始一步一步做出一个这样的计算器：
+                            
+本章主要讲的是空间域的操作（即图像本身）
 
-从窗口输入我们如何才能让程序读取到我们的输入呢？
-这时候我们就需要用到另一个实用的函
+本章主要讨论形如$g(x,y) = T[f(x,y)]$的灰度变换和空间滤波
+上面的公式也可以写成更一般的形式$$s = T(r)$$
+
+$s、r$分别表示输出图像和源图像
+
+操作$T$可以是对
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
-                                    教程
+                            <a href="/categories/%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    笔记
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C</span>
+                    <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                        <span class="chip bg-color">数字图像处理</span>
                     </a>
                     
                 </div>
@@ -877,29 +850,27 @@ int main(){
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/02/minizinc-xue-xi-bi-ji/">
+                <a href="/2020/02/shu-zi-tu-xiang-chu-li-di-er-zhang-bi-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="MiniZinc学习笔记">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="《数字图像处理》第二章笔记">
                         
-                        <span class="card-title">MiniZinc学习笔记</span>
+                        <span class="card-title">《数字图像处理》第二章笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            最近在Coursera上学了 离散优化建模，里面介绍了MiniZinc这个建模语言，个人觉得比较新奇
-基本语法变量类型
-MiniZinc 语句顺序不重要
-
-你可以先定义变量再写表达式，这不是一个需要编译或者逐句解释得语言
-写的程序主要是为了
+                            这篇文章是《数字图像处理（第三版）》的学习笔记，方便日后回忆和查看
+对于一些难懂的知识加入了一些自己的理解和其他讲的比较明白的博客的链接
+关于人眼
+人眼的的视觉系统不是工作在全频段的，每次我们看不同亮度的物体都需要眼睛调节灵敏度。这叫做亮度
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-15
                             </span>
                         <span class="publish-author">
                             
@@ -916,8 +887,8 @@ MiniZinc 语句顺序不重要
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MiniZinc/">
-                        <span class="chip bg-color">MiniZinc</span>
+                    <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                        <span class="chip bg-color">数字图像处理</span>
                     </a>
                     
                 </div>
