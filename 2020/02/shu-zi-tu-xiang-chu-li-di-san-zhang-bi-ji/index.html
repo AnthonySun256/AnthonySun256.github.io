@@ -360,21 +360,21 @@ $s、r$分别表示输出图像和源图像
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-02-20
+                    2020-02-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    694
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    4 分
                 </div>
                 
 				
@@ -428,12 +428,38 @@ $s、r$分别表示输出图像和源图像
 <h2 id="直方图处理"><a href="#直方图处理" class="headerlink" title="直方图处理"></a>直方图处理</h2><p>一般采用统计每个灰度值的像素个数，除以总像素个数，得到一个频率。</p>
 <p>根据这个频率做出直方图</p>
 <h3 id="直方图均衡"><a href="#直方图均衡" class="headerlink" title="直方图均衡"></a>直方图均衡</h3><p>$$s=T(r)$$</p>
+<p>这个博客讲的挺好：<a href="https://blog.csdn.net/qq_15971883/article/details/88699218" target="_blank" rel="noopener">直方图均衡化</a></p>
 <p>所用函数应该遵顼一下几个限制</p>
 <ul>
-<li>变换函数$T(r) 是单增函数$——防止灰度反变换时出现人为缺陷</li>
-<li>输出范围和输入范围相同 $0&lt;r&lt;L$，时候要求$&lt;0T(r)&lt;L$</li>
-<li>正反函数都是一对一的（确保能够还原回去，如果遇到小数则选择合适的近似方法解决反变换问题）</li>
+<li><p>变换函数$T(r) 是单增函数$——防止灰度反变换时出现人为缺陷</p>
+</li>
+<li><p>输出范围和输入范围相同 $0&lt;r&lt;L$，时候要求$&lt;0T(r)&lt;L$</p>
+</li>
+<li><p>正反函数都是一对一的（确保能够还原回去，如果遇到小数则选择合适的近似方法解决反变换问题）</p>
+</li>
+<li><p>$s = T(r) = (L-1)\int^r_0P_r(r)dr$，（L-1）为了使归一化后的像素展开到$[0,L-1]$</p>
+</li>
 </ul>
+<h3 id="直方图匹配-规定化"><a href="#直方图匹配-规定化" class="headerlink" title="直方图匹配/规定化"></a>直方图匹配/规定化</h3><blockquote>
+<p>直方图规定化（histogram specification）又称直方图匹配，是指使一幅图像的直方图变成规定形状的直方图而对图像进行变换的增强方法。就是通过一个灰度映像函数，将原灰度直方图改造成所希望的直方图。所以，直方图修正的关键就是灰度映像函数。</p>
+<p>直方图规定化原理是对两个直方图都做均衡化，变成相同的归一化的均匀直方图。以此均匀直方图起到媒介作用，再对参考图像做均衡化的逆运算即可。直方图均衡化是直方图规定化的桥梁。<br>————————————————<br>版权声明：本文为CSDN博主「残月飞雪」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/majinlei121/article/details/46482615" target="_blank" rel="noopener">https://blog.csdn.net/majinlei121/article/details/46482615</a></p>
+</blockquote>
+<p>相当于现在已知源图像的分布律$pk(r)$，均衡直方图$s$ 【$s = (L-1)\int^r_0p_r(t)dt$】，想要变换称为的分布形式$p_z(z)$，把目标输出$z$变为均衡直方图的变换函数$G(z) = (L-1)\int^z_0p_z(t)dt$</p>
+<p>这样，有以下几个公式：</p>
+<p>$$s = (L-1)T(r) =\int^r_0p_r(t)dt$$</p>
+<p>$$G(z) = (L-1)\int^z_0p_z(t)dt = s$$这里的<strong>$p_z(t)$是我们希望得到的像素分布情况，是已知的</strong></p>
+<blockquote>
+<p>均衡直方图相当于中间变量，起桥梁作用</p>
+</blockquote>
+<p>根据已知$z = G^{-1}[G(z)] = G^{-1}(s) = G^{-1}[T(r)]$</p>
+<blockquote>
+<p>数字图像处理第三章的例3.7通过实例演示了一遍求解方法                            </p>
+</blockquote>
+<p>实际情况中，其实不需要求出具体的反函数，可以用制表的方法进行像素值的映射</p>
+<blockquote>
+<p>根据变换函数G(z) 可以得到$z\to s$的映射，反过来用就可以了，需要单值函数才行，上面部分有说，要基本保证一一对应</p>
+<p>在进行计算的时候需要进行四舍五入（灰度值是整数值），如果舍入以后不满足严格单增，那么按照惯例统一向下取整</p>
+</blockquote>
 
             </div>
             <hr/>
@@ -1097,7 +1123,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">8.8k</span>&nbsp;字
+                class="white-color">9.4k</span>&nbsp;字
             
             
             
