@@ -34,9 +34,9 @@ $s、r$分别表示输出图像和源图像
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -360,21 +360,21 @@ $s、r$分别表示输出图像和源图像
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-02-21
+                    2020-02-23
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    6 分
                 </div>
                 
 				
@@ -460,6 +460,46 @@ $s、r$分别表示输出图像和源图像
 <p>根据变换函数G(z) 可以得到$z\to s$的映射，反过来用就可以了，需要单值函数才行，上面部分有说，要基本保证一一对应</p>
 <p>在进行计算的时候需要进行四舍五入（灰度值是整数值），如果舍入以后不满足严格单增，那么按照惯例统一向下取整</p>
 </blockquote>
+<h3 id="局部直方图均衡化"><a href="#局部直方图均衡化" class="headerlink" title="局部直方图均衡化"></a>局部直方图均衡化</h3><p>类似直方图均衡化，只是把这种操作应用于图像的某个局部</p>
+<p>书中所给的例子每次只更新中间点像素的值。</p>
+<p><a href="https://blog.csdn.net/opencv_857310866/article/details/79592855" target="_blank" rel="noopener">局部直方图均衡化</a></p>
+<h3 id="在图像增强中使用直方图统计"><a href="#在图像增强中使用直方图统计" class="headerlink" title="在图像增强中使用直方图统计"></a>在图像增强中使用直方图统计</h3><p>之前说过直图像的n阶矩定义为:</p>
+<p>$$\mu_n(r) = \sum^{L-1}_{i=0}(r_i-m)^np(r_i)$$</p>
+<ul>
+<li>其中，$m$是$r$的均值（平均灰度）</li>
+</ul>
+<p>$$m = \sum^{L-1}_{i=0}r_ip(r_i) $$</p>
+<p>二阶矩（灰度方差）很重要：</p>
+<p>$$\sigma^2= \mu_2(r) = \sum^{L-1}_{i=0}(r_i-m)^2p(r_i)$$</p>
+<blockquote>
+<p>也可以使用直方图，直接使用</p>
+<p>$m = \frac{1}{MN}\sum^{M-1}<em>{x=0}\sum^{N-1}</em>{y=0}f(x,y)$</p>
+<p>和</p>
+<p>$\sigma^2 = \frac{1}{MN}\sum^{M-1}<em>{x=0}\sum^{N-1}</em>{y=0}[f(x,y)-m]^2$</p>
+</blockquote>
+<ul>
+<li><p>习惯上，方差和标准差计算方法一样（不非要获得无偏估计）</p>
+</li>
+<li><p>均值是平均灰度的度量</p>
+</li>
+<li><p>方差（标准差）是图像<strong>对比度</strong>的度量 </p>
+</li>
+</ul>
+<h4 id="局部增强"><a href="#局部增强" class="headerlink" title="局部增强"></a>局部增强</h4><p>定义：对于任一点$(x,y)$，其以其为中心的邻域$S_{xy}$</p>
+<p>可以计算任一点邻域的平均灰度$m_{s_{xy}}$和方差$\sigma_{S_{xy}}^2$</p>
+<ul>
+<li><p>如果要增强暗色区域，可以把该像素周围的平均灰度$m_{s_{xy}}$和全局平均灰度$m_G$比较，如果$$m_{s_{xy}}\le k_0m_g$$则考虑该<strong>点</strong>进行灰度变换（k为常数，小于1）</p>
+</li>
+<li><p>对于增强对比度，如法炮制，满足$k_1\sigma_{G}^2\le\sigma_{S_{xy}}^2\le k_2\sigma_{G}^2$的点作为候选点，这里面$k_1\sigma_G$是为了保证不让程序试图优化方差为0的区域（无用功，不会变的）</p>
+<ul>
+<li>如果是增强亮区需要$k_2&gt;1$增强亮区则相反。</li>
+</ul>
+</li>
+<li><p>增强的方法可以直接采用$g(x,y) = Ef(x,y)$，其中E为一个常数，这样的方法，不需要特别的计算</p>
+</li>
+<li><p>关于k和E的取值，需要实际分析和尝试</p>
+</li>
+</ul>
 
             </div>
             <hr/>
@@ -1123,7 +1163,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">9.4k</span>&nbsp;字
+                class="white-color">9.9k</span>&nbsp;字
             
             
             
