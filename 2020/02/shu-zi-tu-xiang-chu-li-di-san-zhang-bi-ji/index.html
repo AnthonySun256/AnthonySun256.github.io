@@ -360,21 +360,21 @@ $s、r$分别表示输出图像和源图像
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-02-23
+                    2020-02-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    7 分
                 </div>
                 
 				
@@ -498,6 +498,23 @@ $s、r$分别表示输出图像和源图像
 <li><p>增强的方法可以直接采用$g(x,y) = Ef(x,y)$，其中E为一个常数，这样的方法，不需要特别的计算</p>
 </li>
 <li><p>关于k和E的取值，需要实际分析和尝试</p>
+</li>
+</ul>
+<h1 id="空间滤波基础"><a href="#空间滤波基础" class="headerlink" title="空间滤波基础"></a>空间滤波基础</h1><h2 id="空间滤波机理"><a href="#空间滤波机理" class="headerlink" title="空间滤波机理"></a>空间滤波机理</h2><p>空间滤波器由两部分组成：</p>
+<ol>
+<li>一个邻域（通常是一个较小的矩形范围）</li>
+<li>在领域上的操作组成</li>
+</ol>
+<p>滤波产生<strong>一个</strong>新的像素，新像素的坐标和邻域的中心点坐标相同。新像素的值是滤波操作的结果</p>
+<p>滤波器中心访问每个像素图像后就生成了滤波后的图像</p>
+<ul>
+<li><p>线性滤波器：在图像像素上执行的是线性操作</p>
+</li>
+<li><blockquote>
+<p>例如$g(x,y) = af(x-1,y-1)+bf(x-1,y)+cf(x,y-1)+df(x,y)$</p>
+</blockquote>
+</li>
+<li><p>非线性滤波器：在图像像素上执行的是非线性操作</p>
 </li>
 </ul>
 
@@ -1163,7 +1180,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">9.9k</span>&nbsp;字
+                class="white-color">10.1k</span>&nbsp;字
             
             
             
