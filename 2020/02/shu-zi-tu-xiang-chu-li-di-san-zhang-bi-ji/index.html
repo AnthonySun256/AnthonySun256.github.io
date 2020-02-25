@@ -360,21 +360,21 @@ $s、r$分别表示输出图像和源图像
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-02-24
+                    2020-02-25
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    8 分
                 </div>
                 
 				
@@ -512,11 +512,23 @@ $s、r$分别表示输出图像和源图像
 </li>
 <li><blockquote>
 <p>例如$g(x,y) = af(x-1,y-1)+bf(x-1,y)+cf(x,y-1)+df(x,y)$</p>
+<p>更一般来来讲，使用和邻域size一样的系数矩阵$\boldsymbol W$，使$g(x,y) = \boldsymbol {W^T} S_{xy}$</p>
+<p>即$g(x,y) = \sum^a_{s=-a}\sum^b_{t=-b}W(s,t)f(x+s,y+t)$，其中，系数矩阵$W$中心坐标为$(0,0)$</p>
+<p>这意味着稀疏矩阵和邻域矩阵的长宽最好是<strong>奇数</strong>（不然没有中心像素），否则需要人为指定中心像素</p>
 </blockquote>
 </li>
 <li><p>非线性滤波器：在图像像素上执行的是非线性操作</p>
 </li>
 </ul>
+<h2 id="空间相关与卷积"><a href="#空间相关与卷积" class="headerlink" title="空间相关与卷积"></a>空间相关与卷积</h2><h3 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h3><p>相关指的是滤波器模板平移过图像并计算每个位置乘积之和的处理（<strong>就是上面线性滤波器</strong>的操作）</p>
+<h3 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h3><p>和<strong>相关</strong>机理相似，不过是需要先把稀疏矩阵逆时针转180°，用这个翻转的矩阵进行余下操作</p>
+<blockquote>
+<p>参考阅读：<a href="https://my.oschina.net/datadev/blog/1859197" target="_blank" rel="noopener">为什么卷积要旋转180度</a></p>
+</blockquote>
+<p><strong>术语之间可能存在混淆或者乱用，不必纠结于文字游戏，应在实际应用中体会</strong></p>
+<blockquote>
+<p><a href="https://blog.csdn.net/saltriver/article/details/78883964" target="_blank" rel="noopener">空间滤波器是怎么来的</a></p>
+</blockquote>
 
             </div>
             <hr/>
@@ -1180,7 +1192,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10.1k</span>&nbsp;字
+                class="white-color">10.3k</span>&nbsp;字
             
             
             
