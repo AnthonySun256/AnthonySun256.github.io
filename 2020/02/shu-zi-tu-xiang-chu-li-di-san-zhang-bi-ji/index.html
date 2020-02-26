@@ -34,9 +34,9 @@ $s、r$分别表示输出图像和源图像
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -360,21 +360,21 @@ $s、r$分别表示输出图像和源图像
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-02-25
+                    2020-02-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    3.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    13 分
                 </div>
                 
 				
@@ -528,6 +528,104 @@ $s、r$分别表示输出图像和源图像
 <p><strong>术语之间可能存在混淆或者乱用，不必纠结于文字游戏，应在实际应用中体会</strong></p>
 <blockquote>
 <p><a href="https://blog.csdn.net/saltriver/article/details/78883964" target="_blank" rel="noopener">空间滤波器是怎么来的</a></p>
+</blockquote>
+<p>滤波器矩阵最好是奇数的长宽（方便确认中心点），而且系数和最好为1（防止输出大于最大值）</p>
+<ul>
+<li>均值滤波——低通滤波器</li>
+<li>中值滤波——非线性的——去除<strong>椒盐噪声</strong></li>
+<li>最大/最小值滤波</li>
+</ul>
+<h2 id="锐化空间滤波器"><a href="#锐化空间滤波器" class="headerlink" title="锐化空间滤波器"></a>锐化空间滤波器</h2><p>用于突出灰度的过度部分（边缘或其他噪声）</p>
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p>对于采用的一阶微分方程由以下几点<strong>要求</strong></p>
+<ol>
+<li>在恒定灰度的区域为分支为<strong>零</strong></li>
+<li>在灰度台阶或斜坡处的微分值为<strong>非零</strong></li>
+<li><strong>沿</strong>斜坡的微分值为<strong>非零</strong></li>
+</ol>
+<p>同样，二阶微分方程要求和一阶<strong>相似</strong></p>
+<ol>
+<li>在恒定灰度的区域为分支为<strong>零</strong></li>
+<li>在灰度台阶或斜坡<strong>起点</strong>处微分值<strong>非零</strong></li>
+<li>沿斜坡的微分值为<strong>零</strong></li>
+</ol>
+<p>一维函数的一阶微分的基本定义为：</p>
+<p>$$\frac{\part{x}}{\part x} = f(x+1)-f(x)$$</p>
+<ul>
+<li>二维情况考虑两个空间轴处理偏微分</li>
+</ul>
+<blockquote>
+<p>这个公式的推导在第十章会讲到，先当作规定记下来再说</p>
+</blockquote>
+<p>二阶微分定义为如下差分：</p>
+<p>$$\frac{\part^2f}{\part x^2} = f(x+1)+f(x-1)-2f(x)$$</p>
+<h3 id="拉普拉斯算子"><a href="#拉普拉斯算子" class="headerlink" title="拉普拉斯算子"></a>拉普拉斯算子</h3><p>这是一种各向同性算子（原图片先滤波再旋转和先旋转再滤波结果一样）】</p>
+<blockquote>
+<p>只适合于旋转近似90°倍数的时候</p>
+</blockquote>
+<p>一个二维图像的拉普拉斯算子定义如下：</p>
+<p>$$\nabla^2f = \frac{\part^2f}{\part x^2}+\frac{\part^2f}{\part y^2}$$</p>
+<p>因为任意微分都是线性操作，所以拉普拉斯变换也是一个<strong>线性算子</strong></p>
+<p>其中，<strong>类似一维的情况</strong>，对于偏导有如下计算公式：</p>
+<p>$$\frac{\part^2f}{\part x^2,y} = f(x+1,y)+f(x-1,y)-2f(x,y)$$</p>
+<p>$$\frac{\part^2f}{\part y^2} = f(x,y+1)+f(x,y-1)-2f(x,y)$$</p>
+<p>所以，拉普拉斯算子的公式可以表达为下面这种方式：</p>
+<p>$$\nabla^2f = f(x+1,y)+f(x-1,y)+f(x,y+1)+f(x,y-1)-4f(x,y)$$</p>
+<p>这个公式可以用之前的滤波模板来实现</p>
+<p>拉普拉斯变换会突出显示弧度变化的部分，如果想要锐化图像，需要把锐化后的结果加到源图像上：</p>
+<p>$$g(x,y) = f(x,y)+c[\nabla ^2f(x,y)]$$</p>
+<h2 id="非锐化掩蔽和高提升滤波"><a href="#非锐化掩蔽和高提升滤波" class="headerlink" title="非锐化掩蔽和高提升滤波"></a>非锐化掩蔽和高提升滤波</h2><p>印刷出版社已经用了多年的图像锐化处理过程是<strong>从原图像减去一幅非锐化的模糊版本</strong></p>
+<p>过程如下：</p>
+<ol>
+<li><strong>原图像</strong>和经过处理变的模<strong>糊原图像</strong></li>
+<li>从原图像中减去模糊图像（产生的插值图像称为模板）</li>
+<li>讲模板加到原图像上</li>
+</ol>
+<p>公式表示如下，$\bar f(x,y)$表示模糊后的原图像</p>
+<p>首先得到一个模板</p>
+<p>$$g(x,y)_{mask} = f(x,y)-\bar f(x,y)$$</p>
+<p>然后，给模板一个权重，把模板加到原图像上</p>
+<p>$$g(x,y) = f(x,y)+ k*g_{mask}(x,y)$$</p>
+<ul>
+<li>$k\ge0$</li>
+<li>$k=1$为<strong>非锐化掩蔽</strong></li>
+<li>$k&gt;1$称为<strong>高提升滤波</strong></li>
+</ul>
+<h3 id="使用一阶微分锐化（非线性）图像——梯度"><a href="#使用一阶微分锐化（非线性）图像——梯度" class="headerlink" title="使用一阶微分锐化（非线性）图像——梯度"></a>使用一阶微分锐化（非线性）图像——梯度</h3><p>图像处理中一阶微分是用梯度幅值实现的。对于函数$f(x,y)$，$f$在坐标$(x,y)$处的梯度定义为<strong>二维向量</strong>：</p>
+<p>$$\nabla f \equiv grad(f) \equiv \begin{bmatrix} g_x\\g_y \end{bmatrix} \equiv \begin{bmatrix} \frac{\nabla f}{\nabla x}\\ \\ \frac{\nabla f}{\nabla y} \end{bmatrix}$$</p>
+<blockquote>
+<p>在第十章会更加深入讨论梯度，这里只对使用给梯度幅度值锐化图像感兴趣</p>
+</blockquote>
+<p>该向量具有重要的几何意义，它指出了在位置$(x,y)$处$f$变化率最大的方向</p>
+<ul>
+<li>向量$\nabla f$的幅值（长度）表示为$M(x,y)$，即</li>
+</ul>
+<p>$$M(x,y) = mag(\nabla f) = \sqrt{g^2_x+g^2_y}$$，它是函数在$(x,y)$点处梯度的值</p>
+<ul>
+<li>梯度向量的分量是线性算子，梯度向量的<strong>幅值不是线性算子</strong>（因为有平方开根号操作）</li>
+<li>$\nabla f \equiv grad(f) \equiv \begin{bmatrix} g_x\\g_y \end{bmatrix} \equiv \begin{bmatrix} \frac{\nabla f}{\nabla x}\\ \\ \frac{\nabla f}{\nabla y} \end{bmatrix}$ <strong>不是旋转不变的</strong>(各向同性)，<strong>但是</strong>幅值<strong>是</strong>旋转不变的</li>
+<li>在<strong>某些</strong>实践中，用绝对值来近似平方、平方根操作更适合于计算，即</li>
+</ul>
+<p>$$M(x,y) = |g_x|+|g_y|$$</p>
+<blockquote>
+<p>该操作保留了灰度的相对变化，但是通常<strong>丢失</strong>了各向同性的特性</p>
+</blockquote>
+<p>如果说定义滤波器覆盖范围内的图像用如下矩阵形式表示</p>
+<p>$$\begin{bmatrix} z_1 \ z_2 \ z_3\\z_4 \ z_5 \ z_6 \\ z_7 \ z_8 \ z_9 \end{bmatrix}$$</p>
+<p>那么之前提到的$g_x = z_9-z_5$，$g_y = z_8-z_6$</p>
+<p>x,y这种操作可以分别用以下算子表示：</p>
+<p>$\begin{bmatrix} -1\ 0 \\ 0\ 1\end{bmatrix}$和$\begin{bmatrix} 0\ -1 \\ 1\ 0\end{bmatrix}$</p>
+<ul>
+<li>这叫做<strong>罗伯特交叉梯度算子</strong></li>
+</ul>
+<p>但是由于偶数尺寸的模板很难实现，因为他们没有对称中心</p>
+<p>我们感兴趣的最小模板是 $3*3$模板，他们可以有如下表示</p>
+<p>$$g_x = \frac{\nabla f}{x}=(z_7+2z_8+z_9)-(z_1+z_2+z_3)$$</p>
+<p>$$g_y = \frac{\nabla f}{y}=(z_3+2z_6+z_9)-(z_1+z_4+z_7)$$</p>
+<p>用模板分别表示如下：</p>
+<p>$\begin{bmatrix} -1 \ -2 \ -1\\0 \ 0 \ 0 \\ 1 \ 2 \ 1 \end{bmatrix}$和$\begin{bmatrix} -1 \ 0 \ 1\-2 \ 0 \ 2 \\ -1 \ 0 \ 1 \end{bmatrix}$</p>
+<p>这种算子叫做<strong>Soble算子</strong>，系数和为零（说明在灰度相同的地方产生的响应为零）</p>
+<blockquote>
+<p>这写东西在第十章会继续深入，现在先了解以下</p>
 </blockquote>
 
             </div>
@@ -1192,7 +1290,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10.3k</span>&nbsp;字
+                class="white-color">11.6k</span>&nbsp;字
             
             
             
