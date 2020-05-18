@@ -34,9 +34,9 @@ $s、r$分别表示输出图像和源图像
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Anthony's Blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -107,6 +107,17 @@ $s、r$分别表示输出图像和源图像
       <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
       
       <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
     </a>
     
   </li>
@@ -187,6 +198,17 @@ $s、r$分别表示输出图像和源图像
 			    <i class="fa-fw fas fa-user-circle"></i>
 			
 			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
 		</a>
           
         </li>
@@ -360,21 +382,21 @@ $s、r$分别表示输出图像和源图像
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-02-26
+                    2020-02-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.5k
+                    3.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    14 分
                 </div>
                 
 				
@@ -571,7 +593,7 @@ $s、r$分别表示输出图像和源图像
 <p>所以，拉普拉斯算子的公式可以表达为下面这种方式：</p>
 <p>$$\nabla^2f = f(x+1,y)+f(x-1,y)+f(x,y+1)+f(x,y-1)-4f(x,y)$$</p>
 <p>这个公式可以用之前的滤波模板来实现</p>
-<p>拉普拉斯变换会突出显示弧度变化的部分，如果想要锐化图像，需要把锐化后的结果加到源图像上：</p>
+<p>拉普拉斯变换会突出显示灰度变化的部分，如果想要锐化图像，需要把锐化后的结果加到源图像上：</p>
 <p>$$g(x,y) = f(x,y)+c[\nabla ^2f(x,y)]$$</p>
 <h2 id="非锐化掩蔽和高提升滤波"><a href="#非锐化掩蔽和高提升滤波" class="headerlink" title="非锐化掩蔽和高提升滤波"></a>非锐化掩蔽和高提升滤波</h2><p>印刷出版社已经用了多年的图像锐化处理过程是<strong>从原图像减去一幅非锐化的模糊版本</strong></p>
 <p>过程如下：</p>
@@ -622,11 +644,14 @@ $s、r$分别表示输出图像和源图像
 <p>$$g_x = \frac{\nabla f}{x}=(z_7+2z_8+z_9)-(z_1+z_2+z_3)$$</p>
 <p>$$g_y = \frac{\nabla f}{y}=(z_3+2z_6+z_9)-(z_1+z_4+z_7)$$</p>
 <p>用模板分别表示如下：</p>
-<p>$\begin{bmatrix} -1 \ -2 \ -1\\0 \ 0 \ 0 \\ 1 \ 2 \ 1 \end{bmatrix}$和$\begin{bmatrix} -1 \ 0 \ 1\-2 \ 0 \ 2 \\ -1 \ 0 \ 1 \end{bmatrix}$</p>
+<p>$\begin{bmatrix} -1 \ -2 \ -1\\0 \ \ 0 \ 0 \\ 1 \ 2 \ 1 \end{bmatrix}$和$\begin{bmatrix} -1 \ 0 \ 1\\ -2 \ 0 \ 2 \\ -1 \ 0 \ 1 \end{bmatrix}$</p>
 <p>这种算子叫做<strong>Soble算子</strong>，系数和为零（说明在灰度相同的地方产生的响应为零）</p>
 <blockquote>
 <p>这写东西在第十章会继续深入，现在先了解以下</p>
 </blockquote>
+<h1 id="使用模糊技术进行灰度变换和空间滤波"><a href="#使用模糊技术进行灰度变换和空间滤波" class="headerlink" title="使用模糊技术进行灰度变换和空间滤波"></a>使用模糊技术进行灰度变换和空间滤波</h1><p>过去我们学习的集合中，某个东西是否在一个集合中只有<strong>明确</strong>的两种状态（在或不在），但是当我们讨论，<strong>由年轻人组成的集合</strong>这种问题的时候，<strong>很难确定一个确切的准则</strong>（比如说现在规定20岁及以下为年轻人，那么20岁零1秒的人就不是年轻人了吗）。</p>
+<p>我们想要的应该是年轻和不年轻之间的逐渐过渡，需要一个<strong>非限制评价</strong>的函数，让我们可以讨论一个人的年轻程度。</p>
+<p><a href="https://blog.csdn.net/wang2012010865/article/details/78106369" target="_blank" rel="noopener">模糊集合理论</a></p>
 
             </div>
             <hr/>
@@ -995,56 +1020,46 @@ $s、r$分别表示输出图像和源图像
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/02/shu-zi-tu-xiang-chu-li-di-san-zhang-bi-ji/">
+                <a href="/2020/03/dian-ying-ping-lun-fen-lei-er-fen-lei-wen-ti/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="《数字图像处理》第三章笔记">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="电影评论分类（二分类问题）">
                         
-                        <span class="card-title">《数字图像处理》第三章笔记</span>
+                        <span class="card-title">电影评论分类（二分类问题）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-本章主要讲的是空间域的操作（即图像本身）
-
-本章主要讨论形如$g(x,y) = T[f(x,y)]$的灰度变换和空间滤波
-上面的公式也可以写成更一般的形式$$s = T(r)$$
-
-$s、r$分别表示输出图像和源图像
-
-操作$T$可以是对
+                            本节使用 IMDB 数据集，它包含来自互联网电影数据库（ IMDB）的 50 000 条严重两极分化的评论。数据集被分为用于训练的 25 000 条评论与用于测试的 25 000 条评论，训练集和测试集都包含 50% 的正面评论和 50% 
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-19
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-30
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    笔记
+                            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    深度学习
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
-                        <span class="chip bg-color">数字图像处理</span>
+                    <a href="/tags/%E6%95%99%E7%A8%8B%E4%BB%A3%E7%A0%81/">
+                        <span class="chip bg-color">教程代码</span>
                     </a>
                     
                 </div>
@@ -1290,7 +1305,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">11.6k</span>&nbsp;字
+                class="white-color">15.3k</span>&nbsp;字
             
             
             

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.antonysun.com/"/>
-  <updated>2020-02-26T14:40:09.539Z</updated>
+  <updated>2020-05-18T07:09:16.080Z</updated>
   <id>http://blog.antonysun.com/</id>
   
   <author>
@@ -17,11 +17,92 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>关于getline等函数无法正确读入问题</title>
+    <link href="http://blog.antonysun.com/2020/05/guan-yu-shu-ru-liu-qing-kong-wen-ti/"/>
+    <id>http://blog.antonysun.com/2020/05/guan-yu-shu-ru-liu-qing-kong-wen-ti/</id>
+    <published>2020-05-17T07:35:38.000Z</published>
+    <updated>2020-05-18T07:09:16.080Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;问题发现&quot;&gt;&lt;a href=&quot;#问题发现&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://blog.antonysun.com/categories/C/"/>
+    
+    
+      <category term="技巧" scheme="http://blog.antonysun.com/tags/%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>识别手写数字</title>
+    <link href="http://blog.antonysun.com/2020/03/shi-bie-shou-xie-shu-zi/"/>
+    <id>http://blog.antonysun.com/2020/03/shi-bie-shou-xie-shu-zi/</id>
+    <published>2020-03-30T15:14:36.000Z</published>
+    <updated>2020-03-30T15:16:54.233Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;pre class=&quot;line-numbers language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; keras&lt;span class=&quot;token
+        
+      
+    
+    </summary>
+    
+    
+      <category term="深度学习" scheme="http://blog.antonysun.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="教程代码" scheme="http://blog.antonysun.com/tags/%E6%95%99%E7%A8%8B%E4%BB%A3%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>电影评论分类（二分类问题）</title>
+    <link href="http://blog.antonysun.com/2020/03/dian-ying-ping-lun-fen-lei-er-fen-lei-wen-ti/"/>
+    <id>http://blog.antonysun.com/2020/03/dian-ying-ping-lun-fen-lei-er-fen-lei-wen-ti/</id>
+    <published>2020-03-30T15:14:16.000Z</published>
+    <updated>2020-03-30T15:36:51.222Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;本节使用 IMDB 数据集，它包含来自互联网电影数据库（ IMDB）的 50 000 条严重两极分&lt;br&gt;化的评论。数据集被分为用于训练的 25 000 条评论与用于测试的 25 000 条评论，训练集和测试&lt;br&gt;集都包含 50% 的正面评论和 50%
+        
+      
+    
+    </summary>
+    
+    
+      <category term="深度学习" scheme="http://blog.antonysun.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="教程代码" scheme="http://blog.antonysun.com/tags/%E6%95%99%E7%A8%8B%E4%BB%A3%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
     <title>《数字图像处理》第三章笔记</title>
     <link href="http://blog.antonysun.com/2020/02/shu-zi-tu-xiang-chu-li-di-san-zhang-bi-ji/"/>
     <id>http://blog.antonysun.com/2020/02/shu-zi-tu-xiang-chu-li-di-san-zhang-bi-ji/</id>
     <published>2020-02-19T15:09:08.000Z</published>
-    <updated>2020-02-26T14:40:09.539Z</updated>
+    <updated>2020-02-28T15:19:36.509Z</updated>
     
     <summary type="html">
     
@@ -107,7 +188,7 @@
     <link href="http://blog.antonysun.com/2020/02/c-yu-yan-ji-chu-jiao-cheng-san/"/>
     <id>http://blog.antonysun.com/2020/02/c-yu-yan-ji-chu-jiao-cheng-san/</id>
     <published>2020-02-11T13:09:11.000Z</published>
-    <updated>2020-02-13T15:56:21.292Z</updated>
+    <updated>2020-03-10T12:06:29.517Z</updated>
     
     <summary type="html">
     

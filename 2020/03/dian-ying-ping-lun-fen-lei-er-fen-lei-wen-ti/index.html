@@ -4,13 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MiniZinc学习笔记, Anthony&#39;s Blog">
-    <meta name="description" content="最近在Coursera上学了 离散优化建模，里面介绍了MiniZinc这个建模语言，个人觉得比较新奇
-基本语法变量类型
-MiniZinc 语句顺序不重要
-
-你可以先定义变量再写表达式，这不是一个需要编译或者逐句解释得语言
-写的程序主要是为了">
+    <meta name="keywords" content="电影评论分类（二分类问题）, Anthony&#39;s Blog">
+    <meta name="description" content="本节使用 IMDB 数据集，它包含来自互联网电影数据库（ IMDB）的 50 000 条严重两极分化的评论。数据集被分为用于训练的 25 000 条评论与用于测试的 25 000 条评论，训练集和测试集都包含 50% 的正面评论和 50% ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +13,7 @@ MiniZinc 语句顺序不重要
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>MiniZinc学习笔记 | Anthony&#39;s Blog</title>
+    <title>电影评论分类（二分类问题） | Anthony&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -225,12 +220,12 @@ MiniZinc 语句顺序不重要
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MiniZinc学习笔记</h1>
+                    <h1 class="description center-align post-title">电影评论分类（二分类问题）</h1>
                 </div>
             </div>
         </div>
@@ -347,8 +342,8 @@ MiniZinc 语句顺序不重要
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MiniZinc/">
-                                <span class="chip bg-color">MiniZinc</span>
+                            <a href="/tags/%E6%95%99%E7%A8%8B%E4%BB%A3%E7%A0%81/">
+                                <span class="chip bg-color">教程代码</span>
                             </a>
                         
                     </div>
@@ -359,8 +354,8 @@ MiniZinc 语句顺序不重要
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%AC%94%E8%AE%B0/" class="post-category">
-                                笔记
+                            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                深度学习
                             </a>
                         
                     </div>
@@ -372,28 +367,28 @@ MiniZinc 语句顺序不重要
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-10
+                    2020-03-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-02-18
+                    2020-03-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    9 分
                 </div>
                 
 				
@@ -409,85 +404,114 @@ MiniZinc 语句顺序不重要
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>最近在Coursera上学了 <a href="https://www.coursera.org/learn/lisan-youhua-jianmo-jichupian" target="_blank" rel="noopener">离散优化建模</a>，里面介绍了MiniZinc这个建模语言，个人觉得比较新奇</p>
-<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><h2 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h2><ul>
-<li><p>MiniZinc 语句顺序不重要</p>
-<ul>
-<li>你可以先定义变量再写表达式，这不是一个需要编译或者逐句解释得语言</li>
-<li>写的程序主要是为了给后端得求解器描述问题</li>
-</ul>
-<ul>
-<li>关于变量<ul>
-<li>MiniZinc变量类型主要分为两大类<ul>
-<li>参数</li>
-<li>决策变量</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>其中<strong>参数</strong>类似于其他语言中的<strong>常量</strong>，<strong>只能在程序开始的时候被赋值</strong>而且<strong>只能被赋值一次</strong></p>
-<p><strong>决策变量</strong>相当于其他语言中普通的可变变量（类似于方程中的未知数）</p>
-<p><img src="https://img-blog.csdnimg.cn/20200210125011804.png" alt="变量声明"></p>
-<p>可以看到，MiniZinc对于变量声明方式也是比较特殊的，形式为<code>变量类型描述:变量名称</code></p>
-<p>当然，这两个分类只是从<strong>变量是不是常量</strong>的角度划分的</p>
-<p>MiniZinc像其他语言一样，支持整数、浮点，数组、字符串、枚举、集合等类型</p>
-<p>比如生成一个大小为10的int类型数组</p>
-<ul>
-<li>1..10代表从1到10的一个<strong>整数序列</strong></li>
-<li>数组统一用array[]表示，方括号里边写数组包含的下标，图里的数组可以访问的下标范围是1~10</li>
-<li>数组的下标可以是任意的类型（文字什么的也都可以，类似于字典，不过只能一对一）</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/20200210125104691.png" alt="声明一个下标为1~10的int类型数组"></p>
-<h2 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h2><p>MiniZinc是建模语言，它的主要作用是求解数学模型，我们光定义变量是不够的，一个模型除了$x,y,z$这样的变量还有会有很多的<strong>约束</strong>，比如$x = y+1$、$x\ge5$、$z\in R$ 等等，那么这些约束要怎样表达出来呢？</p>
-<p>以一个简单的约束问题来看</p>
-<p>$$x\in[-1,10],x\in Z,y=-(x-1)^2$$</p>
-<p>求$max(y)$</p>
-<p>很明显，这个问题的意思就是，x可以取从-1到10的整数（也就是x可以等于-1,0,1,2,3,4,5,6,7,8,9,10）$y=-(x-1)^2$ ，求一下 $y$ 的最大值</p>
-<p>这个问题很简单，但足够用来说明MiniZinc的语法</p>
-<p>首先我们定义变量x和y</p>
-<pre><code>var int: x; %定义整数变量x
-var int: y; %定义整数变量y</code></pre><p>接着，我们给x限定取值范围，并输入表达式 $y=-(x-1)^2$ ，这时候就需要用到我们的<strong>约束关键字</strong>了</p>
-<pre><code>var int: x; %定义整数变量x
-var int: y; %定义整数变量y
-constraint x&gt;=-1;
-constraint x&lt;=10;
-constraint y = -((x-1)^2) %必须要加上括号，不然会出问题</code></pre><p>这里面，<strong>constraint</strong> 之后放上就是我们模型的约束</p>
-<p>最后，我们要求最大值，使用 <strong>solve</strong> 语句</p>
-<pre><code>var int: x; %定义整数变量x
-var int: y; %定义整数变量y
-constraint x&gt;=-1;
-constraint x&lt;=10;
-constraint y = -((x-1)^2) %必须要加上括号，不然会出问题
-solve maximize y;</code></pre><p><strong>solve</strong> 后面紧跟着我们想要的目标，maximize是MiniZinc内置的关键字，表示求最大值（最小值是minimize），后面接上y，表示求y这个变量的最大值</p>
-<p>运行这个脚本，我们可以得到</p>
+                <p>本节使用 IMDB 数据集，它包含来自互联网电影数据库（ IMDB）的 50 000 条严重两极分<br>化的评论。数据集被分为用于训练的 25 000 条评论与用于测试的 25 000 条评论，训练集和测试<br>集都包含 50% 的正面评论和 50% 的负面评论。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> keras<span class="token punctuation">.</span>datasets <span class="token keyword">import</span> imdb
+<span class="token punctuation">(</span>train_data<span class="token punctuation">,</span> train_labels<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>test_data<span class="token punctuation">,</span> test_labels<span class="token punctuation">)</span> <span class="token operator">=</span> imdb<span class="token punctuation">.</span>load_data<span class="token punctuation">(</span>
+num_words<span class="token operator">=</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"># num_words意思是仅保留训练数据中前10000个最常出现的单词，低频的词会被舍弃。这样得到的向量数据不会太大，便于处理</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <blockquote>
-<p>x=1;</p>
-<p>y=0;</p>
+<p>Using TensorFlow backend.</p>
 </blockquote>
-<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>对于这个脚本，我们可以进行一些优化，让脚本行数更少一些</p>
+<p>train_data 和 test_data 这两个变量都是评论组成的列表，每条评论又是单词索引组成<br>的列表（表示一系列单词）。 train_labels 和 test_labels 都是 0 和 1 组成的列表，其中 0<br>代表负面（ negative）， 1 代表正面（ positive）</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#把评论解码为英文单词</span>
+word_index <span class="token operator">=</span> imdb<span class="token punctuation">.</span>get_word_index<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">#得到 英文->数字的字典</span>
+<span class="token comment" spellcheck="true">#得到 数字->英文的字典</span>
+<span class="token comment" spellcheck="true">#以上的映射肯定是一对一的</span>
+reverse_word_index <span class="token operator">=</span> dict<span class="token punctuation">(</span>
+<span class="token punctuation">[</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> key<span class="token punctuation">)</span> <span class="token keyword">for</span> <span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span> <span class="token keyword">in</span> word_index<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+decoded_review <span class="token operator">=</span> <span class="token string">' '</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>
+<span class="token punctuation">[</span>reverse_word_index<span class="token punctuation">.</span>get<span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">'?'</span><span class="token punctuation">)</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> train_data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">#索引减去了 3，因为 0、 1、 2是为“padding”（填充）、“start of sequence”（序列开始）、“unknown”（未知词）分别保留的索引</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'train_data[0]:'</span><span class="token punctuation">,</span> decoded_review<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
-<p>注意：一般来讲，模型的描述越紧凑，MiniZinc求解的速度越快，尤其是聚类等问题，越少使用constraint，求解速度越快</p>
+<p>train_data[0]: ? this film was just brilliant casting location scenery story direction everyone’s really suited the part they played and you could just imagine being there robert ? is an amazing actor and now the same being director ? father came from the same scottish island as myself so i loved the fact there was a real connection with this film the witty remarks throughout the film were great it was just brilliant so much that i bought the film as soon as it was released for ? and would recommend it to everyone to watch and the fly fishing was amazing really cried at the end it was so sad and you know what they say if you cry at a film it must have been good and this definitely was also ? to the two little boy’s that played the ? of norman and paul they were just brilliant children are often left out of the ? list i think because the stars that play them all grown up are such a big profile for the whole film but these children are amazing and should be praised for what they have done don’t you think the whole story was so lovely because it was true and was someone’s life after all that was shared with us all</p>
 </blockquote>
-<p>首先，我们可以在变量定义的时候就限制x的取值范围</p>
-<pre><code>var -1..10: x; %x可以是从-1到10的任意整数</code></pre><p>其次，我们可以在变量定义的时候就给y赋值</p>
-<pre class="line-numbers language-\"><code class="language-\">var int: y = -((x-1)^2);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>我们的脚本就优化成了这样</p>
-<pre><code>var -1..10: x; 
-var int: y=-((x-1)^2);
-solve maximize y;</code></pre><p>理论上，这样的模型具有更快的求解速度（不绝对，视求解器而定）</p>
-<h3 id="新的问题"><a href="#新的问题" class="headerlink" title="新的问题"></a>新的问题</h3><p>我们发现，这个脚本运行以后只输出x的值，不输出y了</p>
-<p>对此，我们需要指定脚本的输出格式。</p>
-<p>语法如下</p>
-<pre><code>output &lt;字符串列表&gt;;</code></pre><p>与C语言类似，字符串写在<kbd>"</kbd> <kbd>"</kbd>里面，也支持\t \n等转义符</p>
-<p>对于如果要输出变量可以采用<strong>(变量名)</strong>的方式或者 <strong>“字符串”++show(变量名)</strong>的方式</p>
+<p>你不能将整数序列直接输入神经网络。你需要将列表转换为张量。转换方法有以下两种。</p>
+<ul>
+<li>填充列表，使其具有相同的长度，再将列表转换成形状为 (samples, word_indices)<br>的整数张量，然后网络第一层使用能处理这种整数张量的层（即 Embedding 层，本书<br>后面会详细介绍）。</li>
+<li>对列表进行 one-hot 编码，将其转换为 0 和 1 组成的向量。举个例子，序列 [3, 5] 将会<br>被转换为 10 000 维向量，只有索引为 3 和 5 的元素是 1，其余元素都是 0。然后网络第<br>一层可以用 Dense 层，它能够处理浮点数向量数据。<br>下面我们采用后一种方法将数据向量化。为了加深理解，你可以手动实现这一方法，如下<br>所示。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#准备数据</span>
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">def</span> <span class="token function">vectorize_sequences</span><span class="token punctuation">(</span>sequences<span class="token punctuation">,</span> dimension<span class="token operator">=</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    results <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span>len<span class="token punctuation">(</span>sequences<span class="token punctuation">)</span><span class="token punctuation">,</span> dimension<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i<span class="token punctuation">,</span> sequence <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>sequences<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        results<span class="token punctuation">[</span>i<span class="token punctuation">,</span> sequence<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">.</span>
+    <span class="token keyword">return</span> results
+
+x_train <span class="token operator">=</span> vectorize_sequences<span class="token punctuation">(</span>train_data<span class="token punctuation">)</span>
+x_test <span class="token operator">=</span> vectorize_sequences<span class="token punctuation">(</span>test_data<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#准备标签(本来就是0 1 的取值，直接变为浮点型的np数组就行)</span>
+y_train <span class="token operator">=</span> np<span class="token punctuation">.</span>asarray<span class="token punctuation">(</span>train_labels<span class="token punctuation">)</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token string">'float32'</span><span class="token punctuation">)</span>
+y_test <span class="token operator">=</span> np<span class="token punctuation">.</span>asarray<span class="token punctuation">(</span>test_labels<span class="token punctuation">)</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token string">'float32'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#构建网络</span>
+<span class="token keyword">from</span> keras <span class="token keyword">import</span> models<span class="token punctuation">,</span> layers
+
+network <span class="token operator">=</span> models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
+network<span class="token punctuation">.</span>add<span class="token punctuation">(</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">,</span> input_shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span>activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+network<span class="token punctuation">.</span>add<span class="token punctuation">(</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">,</span>activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+network<span class="token punctuation">.</span>add<span class="token punctuation">(</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>activation<span class="token operator">=</span><span class="token string">'sigmoid'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>什么是激活函数？为什么要使用激活函数？<br>如果没有 relu 等激活函数（也叫非线性）， Dense 层将只包含两个线性运算——点积<br>和加法：<br>output = dot(W, input) + b<br>这样 Dense 层就只能学习输入数据的线性变换（仿射变换）：该层的假设空间是从输<br>入数据到 16 位空间所有可能的线性变换集合。这种假设空间非常有限，无法利用多个表示<br>层的优势，因为多个线性层堆叠实现的仍是线性运算，添加层数并不会扩展假设空间。<br>为了得到更丰富的假设空间，从而充分利用多层表示的优势，你需要添加非线性或激<br>活函数。 relu 是深度学习中最常用的激活函数，但还有许多其他函数可选，它们都有类似<br>的奇怪名称，比如 prelu、 elu 等。</p>
+<p>最后，你需要选择损失函数和优化器。由于你面对的是一个二分类问题，网络输出是一<br>个概率值（网络最后一层使用 sigmoid 激活函数，仅包含一个单元），那么最好使用 binary_<br>crossentropy（二元交叉熵）损失。这并不是唯一可行的选择，比如你还可以使用 mean_<br>squared_error（均方误差）。但对于输出概率值的模型， 交叉熵（ crossentropy）往往是最好<br>的选择。交叉熵是来自于信息论领域的概念，用于衡量概率分布之间的距离，在这个例子中就<br>是真实分布与预测值之间的距离</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#编译网络</span>
+<span class="token comment" spellcheck="true">#这里使用了默认的优化器、损失函数和度量方法</span>
+network<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>optimizer<span class="token operator">=</span><span class="token string">'rmsprop'</span><span class="token punctuation">,</span>
+                loss<span class="token operator">=</span><span class="token string">'binary_crossentropy'</span><span class="token punctuation">,</span>
+                metrics<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'accuracy'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#或者使用自定义的参数进行训练</span>
+<span class="token keyword">from</span> keras <span class="token keyword">import</span> optimizers
+<span class="token keyword">from</span> keras <span class="token keyword">import</span> losses
+<span class="token keyword">from</span> keras <span class="token keyword">import</span> metrics
+<span class="token comment" spellcheck="true">#学习率设为0.01</span>
+model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>optimizer<span class="token operator">=</span>optimizers<span class="token punctuation">.</span>RMSprop<span class="token punctuation">(</span>lr<span class="token operator">=</span><span class="token number">0.001</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+loss<span class="token operator">=</span>losses<span class="token punctuation">.</span>binary_crossentropy<span class="token punctuation">,</span>
+metrics<span class="token operator">=</span><span class="token punctuation">[</span>metrics<span class="token punctuation">.</span>binary_accuracy<span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#把前10000个样本作验证集</span>
+x_val <span class="token operator">=</span> x_train<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">10000</span><span class="token punctuation">]</span>
+partial_x_train <span class="token operator">=</span> x_train<span class="token punctuation">[</span><span class="token number">10000</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+y_val <span class="token operator">=</span> y_train<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">10000</span><span class="token punctuation">]</span>
+partial_y_train <span class="token operator">=</span> y_train<span class="token punctuation">[</span><span class="token number">10000</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#使用交叉验证集，用来验证模型是否过拟合</span>
+<span class="token comment" spellcheck="true">#！！！这里不应该用测试集代替验证集！！！！</span>
+<span class="token comment" spellcheck="true">#测试集是用来测试模型的泛化能力的</span>
+
+history <span class="token operator">=</span> network<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>partial_x_train<span class="token punctuation">,</span>
+                      partial_y_train<span class="token punctuation">,</span>
+                      validation_data<span class="token operator">=</span><span class="token punctuation">(</span>x_val<span class="token punctuation">,</span>y_val<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                      batch_size<span class="token operator">=</span><span class="token number">512</span><span class="token punctuation">,</span>
+                      epochs<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
-<p>注意：MIniZinc里两个字符串之间用两个加号连接</p>
+<p>Train on 15000 samples, validate on 10000 samples<br>Epoch 1/20<br>15000/15000 [==============================] - 5s 311us/step - loss: 0.5258 - accuracy: 0.7988 - val_loss: 0.4014 - val_accuracy: 0.8655<br>Epoch 2/20<br>15000/15000 [==============================] - 2s 116us/step - loss: 0.3251 - accuracy: 0.8949 - val_loss: 0.3164 - val_accuracy: 0.8811<br>Epoch 3/20<br>15000/15000 [==============================] - 2s 116us/step - loss: 0.2349 - accuracy: 0.9259 - val_loss: 0.2903 - val_accuracy: 0.8843<br>Epoch 4/20<br>15000/15000 [==============================] - 2s 117us/step - loss: 0.1874 - accuracy: 0.9377 - val_loss: 0.2722 - val_accuracy: 0.8906<br>Epoch 5/20<br>15000/15000 [==============================] - 2s 116us/step - loss: 0.1514 - accuracy: 0.9510 - val_loss: 0.2907 - val_accuracy: 0.8845<br>Epoch 6/20<br>15000/15000 [==============================] - 2s 116us/step - loss: 0.1261 - accuracy: 0.9599 - val_loss: 0.2893 - val_accuracy: 0.8865<br>Epoch 7/20<br>15000/15000 [==============================] - 2s 117us/step - loss: 0.1059 - accuracy: 0.9663 - val_loss: 0.2994 - val_accuracy: 0.8837<br>Epoch 8/20<br>15000/15000 [==============================] - 2s 117us/step - loss: 0.0871 - accuracy: 0.9759 - val_loss: 0.3576 - val_accuracy: 0.8719<br>Epoch 9/20<br>15000/15000 [==============================] - 2s 116us/step - loss: 0.0722 - accuracy: 0.9813 - val_loss: 0.3443 - val_accuracy: 0.8809<br>Epoch 10/20<br>15000/15000 [==============================] - 2s 116us/step - loss: 0.0604 - accuracy: 0.9837 - val_loss: 0.3737 - val_accuracy: 0.8785<br>Epoch 11/20<br>15000/15000 [==============================] - 2s 117us/step - loss: 0.0487 - accuracy: 0.9880 - val_loss: 0.3988 - val_accuracy: 0.8740<br>Epoch 12/20<br>15000/15000 [==============================] - 2s 117us/step - loss: 0.0414 - accuracy: 0.9895 - val_loss: 0.4196 - val_accuracy: 0.8766<br>Epoch 13/20<br>15000/15000 [==============================] - 2s 118us/step - loss: 0.0305 - accuracy: 0.9941 - val_loss: 0.4521 - val_accuracy: 0.8741<br>Epoch 14/20<br>15000/15000 [==============================] - 2s 117us/step - loss: 0.0252 - accuracy: 0.9956 - val_loss: 0.5127 - val_accuracy: 0.8695<br>Epoch 15/20<br>15000/15000 [==============================] - 2s 117us/step - loss: 0.0200 - accuracy: 0.9972 - val_loss: 0.5208 - val_accuracy: 0.8722<br>Epoch 16/20<br>15000/15000 [==============================] - 2s 117us/step - loss: 0.0165 - accuracy: 0.9976 - val_loss: 0.5612 - val_accuracy: 0.8667<br>Epoch 17/20<br>15000/15000 [==============================] - 2s 117us/step - loss: 0.0114 - accuracy: 0.9989 - val_loss: 0.5856 - val_accuracy: 0.8688<br>Epoch 18/20<br>15000/15000 [==============================] - 2s 118us/step - loss: 0.0120 - accuracy: 0.9981 - val_loss: 0.6191 - val_accuracy: 0.8677<br>Epoch 19/20<br>15000/15000 [==============================] - 2s 124us/step - loss: 0.0060 - accuracy: 0.9998 - val_loss: 0.6925 - val_accuracy: 0.8622<br>Epoch 20/20<br>15000/15000 [==============================] - 2s 128us/step - loss: 0.0094 - accuracy: 0.9983 - val_loss: 0.6941 - val_accuracy: 0.8657</p>
 </blockquote>
-<p>一般来讲，我们这样书写输出语句</p>
-<pre><code>output [&quot;1+1 = &quot; ++ show(1+1)]; %写在方括号里，show函数把变量或者其他类型转为字符串类型</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#绘制损失函数曲线，评估模型</span>
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+history_dict <span class="token operator">=</span> history<span class="token punctuation">.</span>history
+loss_values <span class="token operator">=</span> history_dict<span class="token punctuation">[</span><span class="token string">'loss'</span><span class="token punctuation">]</span>
+val_loss_values <span class="token operator">=</span> history_dict<span class="token punctuation">[</span><span class="token string">'val_loss'</span><span class="token punctuation">]</span>
+epochs <span class="token operator">=</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>loss_values<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>epochs<span class="token punctuation">,</span> loss_values<span class="token punctuation">,</span> <span class="token string">'bo'</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">'Training loss'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>epochs<span class="token punctuation">,</span> val_loss_values<span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">'Validation loss'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Training and validation loss'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Epochs'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Loss'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可以看到，模型明显过拟合了应该尝试减小迭代次数，但是这里只是学习，问题不大</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#绘制精度曲线</span>
+plt<span class="token punctuation">.</span>clf<span class="token punctuation">(</span><span class="token punctuation">)</span>
+acc <span class="token operator">=</span> history_dict<span class="token punctuation">[</span><span class="token string">'accuracy'</span><span class="token punctuation">]</span>
+val_acc <span class="token operator">=</span> history_dict<span class="token punctuation">[</span><span class="token string">'val_accuracy'</span><span class="token punctuation">]</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>epochs<span class="token punctuation">,</span> acc<span class="token punctuation">,</span> <span class="token string">'bo'</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">'Training acc'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>epochs<span class="token punctuation">,</span> val_acc<span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">'Validation acc'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Training and validation accuracy'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Epochs'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Accuracy'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#预测一个样本为好评的可能</span>
+network<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span>x_test<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<blockquote>
+<p>array([[8.421981e-05]], dtype=float32)</p>
+</blockquote>
+
             </div>
             <hr/>
 
@@ -512,7 +536,7 @@ solve maximize y;</code></pre><p>理论上，这样的模型具有更快的求�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.antonysun.com/2020/02/minizinc-xue-xi-bi-ji/">http://blog.antonysun.com/2020/02/minizinc-xue-xi-bi-ji/</a>
+                    <a href="http://blog.antonysun.com/2020/03/dian-ying-ping-lun-fen-lei-er-fen-lei-wen-ti/">http://blog.antonysun.com/2020/03/dian-ying-ping-lun-fen-lei-er-fen-lei-wen-ti/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -550,8 +574,8 @@ solve maximize y;</code></pre><p>理论上，这样的模型具有更快的求�
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MiniZinc/">
-                                    <span class="chip bg-color">MiniZinc</span>
+                                <a href="/tags/%E6%95%99%E7%A8%8B%E4%BB%A3%E7%A0%81/">
+                                    <span class="chip bg-color">教程代码</span>
                                 </a>
                             
                         </div>
@@ -859,39 +883,32 @@ solve maximize y;</code></pre><p>理论上，这样的模型具有更快的求�
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/02/c-yu-yan-ji-chu-jiao-cheng-san/">
+                <a href="/2020/03/shi-bie-shou-xie-shu-zi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="C语言基础教程（三）">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="识别手写数字">
                         
-                        <span class="card-title">C语言基础教程（三）</span>
+                        <span class="card-title">识别手写数字</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            上一篇，我们讲了printf的基本用法，并写了一个简单的计算器。
-还记得上一篇最后的任务吗？
-
-计算 3/2 的得数
-
-如果你的代码是这样的
-#include &lt;stdio.h>
-int main(){
-    printf("3/2
+                            from keras.datasets import mnist
+Using TensorFlow backend.(train_images, train_labels),(test_images,test_labels) = mnist
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-11
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-30
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
-                                    教程
+                            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    深度学习
                                 </a>
                             
                             
@@ -901,8 +918,8 @@ int main(){
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C</span>
+                    <a href="/tags/%E6%95%99%E7%A8%8B%E4%BB%A3%E7%A0%81/">
+                        <span class="chip bg-color">教程代码</span>
                     </a>
                     
                 </div>
@@ -916,38 +933,39 @@ int main(){
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/02/c-yu-yan-ji-chu-jiao-cheng-er/">
+                <a href="/2020/02/shu-zi-tu-xiang-chu-li-di-san-zhang-bi-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="C语言基础教程（二）">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="《数字图像处理》第三章笔记">
                         
-                        <span class="card-title">C语言基础教程（二）</span>
+                        <span class="card-title">《数字图像处理》第三章笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            简单计算器
-回顾：在上一篇的教程中，我们了解了printf的功能和它的由来
+                            
+本章主要讲的是空间域的操作（即图像本身）
 
-还记得我们上一篇的代码吗？
-//Hello world.c
-#include &lt;stdio.h>
-int main(){
-    printf("Hello
+本章主要讨论形如$g(x,y) = T[f(x,y)]$的灰度变换和空间滤波
+上面的公式也可以写成更一般的形式$$s = T(r)$$
+
+$s、r$分别表示输出图像和源图像
+
+操作$T$可以是对
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-19
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
-                                    教程
+                            <a href="/categories/%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    笔记
                                 </a>
                             
                             
@@ -957,8 +975,8 @@ int main(){
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C</span>
+                    <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                        <span class="chip bg-color">数字图像处理</span>
                     </a>
                     
                 </div>

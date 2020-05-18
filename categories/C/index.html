@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Anthony&#39;s Blog">
-    <meta name="description" content="Anthony&#39;s Blog">
+    <meta name="keywords" content="分类: C++, Anthony&#39;s Blog">
+    <meta name="description" content="分类: C++ | Anthony&#39;s Blog">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Anthony&#39;s Blog</title>
+    <title>分类: C++ | Anthony&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -216,7 +216,6 @@
 
 </header>
 
-    
     <div class="bg-cover pd-header about-cover">
     <div class="container">
     <div class="row">
@@ -258,91 +257,96 @@
     </div>
 </div>
 
-
 <main class="content">
 
     
-    <div id="indexCard" class="index-card">
-        <div class="container ">
-            <div class="card">
-                <div class="card-content">
-                    
-                        <div class="dream">
-    
-    <div class="title center-align">
-        <i class="far fa-lightbulb"></i>&nbsp;&nbsp;舞台
-    </div>
-    
-    <div class="row">
-        <div class="col l8 offset-l2 m10 offset-m1 s10 offset-s1 center-align text">
-            “世界就是一个舞台，每一个人都要在上面演出一个角色”——莎士比亚
+
+<div id="category-cloud" class="container chip-container">
+    <div class="card">
+        <div class="card-content">
+            <div class="tag-title center-align">
+                <i class="fas fa-bookmark"></i>&nbsp;&nbsp;文章分类
+            </div>
+            <div class="tag-chips">
+                
+                
+                
+                <a href="/categories/%E6%95%99%E7%A8%8B/" title="教程: 4">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #F9EBEA;">教程
+                        <span class="tag-length">4</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记: 3">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #F5EEF8;">笔记
+                        <span class="tag-length">3</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/C/" title="C++: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-active "
+                            style="background-color: #D5F5E3;">C++
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" title="深度学习: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #E8F8F5;">深度学习
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+            </div>
         </div>
     </div>
 </div>
-                    
-
-                    
-
-                    
-
-                    
-                    <div id="recommend-sections" class="recommend">
-                        
-
-
-
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    
 
     
 
-    
-
-    <!-- 所有文章卡片 -->
     <article id="articles" class="container articles">
-        <div class="row article-row">
+        <div class="row tags-posts">
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/02/c-yu-yan-ji-chu-jiao-cheng-san/">
-                        <div class="card-image">
+                    <a href="/2020/05/guan-yu-shu-ru-liu-qing-kong-wen-ti/">
+                        <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="C语言基础教程（三）">
+                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="关于getline等函数无法正确读入问题">
                             
-                            <span class="card-title">C语言基础教程（三）</span>
+                            <span class="card-title">关于getline等函数无法正确读入问题</span>
                         </div>
                     </a>
-
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                上一篇，我们讲了printf的基本用法，并写了一个简单的计算器。
-还记得上一篇最后的任务吗？
-
-计算 3/2 的得数
-
-如果你的代码是这样的
-#include &lt;stdio.h>
-int main(){
-    printf("3/2
+                                问题发现之前在修改一个程序的时候遇到这样一个bug：
+程序需要读入一整以换行符结尾的字符串，一开始使用了cin.getline()方法，但是在实际应用中程序未读入任何字符，其使用的方法如下：
+#include &lt;cstdarg>
+#i
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-17
                             </span>
                             <span class="publish-author">
                                 
                                 <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
-                                    教程
+                                <a href="/categories/C/" class="post-category">
+                                    C++
                                 </a>
                                 
                                 
@@ -353,162 +357,8 @@ int main(){
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/C/">
-                            <span class="chip bg-color">C</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/02/minizinc-xue-xi-bi-ji/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="MiniZinc学习笔记">
-                            
-                            <span class="card-title">MiniZinc学习笔记</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                最近在Coursera上学了 离散优化建模，里面介绍了MiniZinc这个建模语言，个人觉得比较新奇
-基本语法变量类型
-MiniZinc 语句顺序不重要
-
-你可以先定义变量再写表达式，这不是一个需要编译或者逐句解释得语言
-写的程序主要是为了
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-10
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    笔记
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/MiniZinc/">
-                            <span class="chip bg-color">MiniZinc</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/02/c-yu-yan-ji-chu-jiao-cheng-er/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="C语言基础教程（二）">
-                            
-                            <span class="card-title">C语言基础教程（二）</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                简单计算器
-回顾：在上一篇的教程中，我们了解了printf的功能和它的由来
-
-还记得我们上一篇的代码吗？
-//Hello world.c
-#include &lt;stdio.h>
-int main(){
-    printf("Hello
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-09
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
-                                    教程
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/C/">
-                            <span class="chip bg-color">C</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/02/c-yu-yan-ji-chu-jiao-cheng-yi/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="C语言基础教程（一）">
-                            
-                            <span class="card-title">C语言基础教程（一）</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                关于编程环境网络上有很多C语言编程环境的配置教程，也有很多开箱即用的安装包，请大家自行摸索，对于学习来讲，微软的Visual Studio足以满足我们的需求。
-注意：由于编译器不同，Visual Studio并不完全适合C语言开发，如果您的
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-08
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
-                                    教程
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/C/">
-                            <span class="chip bg-color">C</span>
+                        <a href="/tags/%E6%8A%80%E5%B7%A7/">
+                            <span class="chip bg-color">技巧</span>
                         </a>
                         
                     </div>
@@ -518,32 +368,7 @@ int main(){
             
         </div>
     </article>
-
 </main>
-
-
-<div class="container paging">
-    <div class="row">
-        <div class="col s6 m4 l4">
-            
-            <a href="/"
-               class="left btn-floating btn-large waves-effect waves-light bg-color">
-                <i class="fas fa-angle-left"></i>
-            </a>
-            
-        </div>
-        <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">2 / 2</div>
-        </div>
-        <div class="col s6 m4 l4">
-            
-            <a class="right btn-floating btn-large disabled">
-                <i class="fas fa-angle-right"></i>
-            </a>
-            
-        </div>
-    </div>
-</div>
 
 
 
