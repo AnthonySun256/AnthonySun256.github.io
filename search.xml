@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>用simulink产生三角脉冲的正确方法</title>
+      <link href="/2020/05/yong-simulink-chan-sheng-san-jiao-mai-chong-de-zheng-que-fang-fa/"/>
+      <url>/2020/05/yong-simulink-chan-sheng-san-jiao-mai-chong-de-zheng-que-fang-fa/</url>
+      
+        <content type="html"><![CDATA[<h1 id="产生三角波（脉冲）"><a href="#产生三角波（脉冲）" class="headerlink" title="产生三角波（脉冲）"></a>产生三角波（脉冲）</h1><p>有两种方法，一个是使用simulink自带的Repeating sequence模块，可以在模块设置界面设置脉冲的形状和周期，方法比较简单。</p><p>第二种是使用Matlab Function模块，如图所示<br><img src="https://img-blog.csdnimg.cn/20200527135220246.jpg#pic_center" alt="Matlab Function模块"><br>双击该模块出现脚本编辑界面，这里我使用以下代码。(代码高亮好像不支持matlab。。。)</p><pre class="line-numbers language-Matlab"><code class="language-Matlab">function y = fcn(time,delta)if time <=delta    y = time/delta^2;elseif time< delta*2    y = 1/delta-(time-delta)/delta^2;else    y = 0;endend<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>它接收一个时钟信号<code>time</code>和$\delta$产生一个宽度为 $2\delta$ 峰值为$\frac{1}{\delta}$ ，面积为<code>1</code>的三角脉冲，其$\delta = 0.25$时的图像如图所示<br><img src="https://img-blog.csdnimg.cn/20200527135556121.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70#pic_center" alt="delta = 0.25时的波形"></p><h1 id="三角波失真"><a href="#三角波失真" class="headerlink" title="三角波失真"></a>三角波失真</h1><h2 id="问题产生"><a href="#问题产生" class="headerlink" title="问题产生"></a>问题产生</h2><p><strong>仿真时间为2s时</strong></p><p>上一节介绍了两种产生三角波的方法在使用过程中，如果$\delta$ 过小，比如<code>0.1</code> 和<code>0.0025</code>其理想中的图形应该时这样的</p><p><img src="https://img-blog.csdnimg.cn/20200527142025173.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70" alt="delta =0.0025"><br><img src="https://img-blog.csdnimg.cn/20200527142054172.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70" alt="delta = 0.1"></p><p><strong>但是在默认情况下simulink输出的波形却是这样的</strong>，可以发现$\delta = 0.1$的三角形尖的部分被削去了，$\delta = 0.0025$干脆啥都没有了</p><p><img src="https://img-blog.csdnimg.cn/20200527135925555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70" alt="失真的delta = 0.1"><br><img src="https://img-blog.csdnimg.cn/2020052714040582.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70" alt="消失的delta = 0.0025"><br>如果把这两个波形($\delta = 0.0025$和$\delta =0.1$)分别输入如图所示的一阶系统($\frac{dy(t)}{dt(t)}+2y(t) =x(t)$)中，则会产生如图的冲激响应<br><img src="https://img-blog.csdnimg.cn/20200527141304233.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70" alt="一阶系统"><br><img src="https://img-blog.csdnimg.cn/20200527141145143.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70" alt="delta = 0.0025时的响应"><br><img src="https://img-blog.csdnimg.cn/20200527141212355.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70" alt="delta = 0.1时的响应"></p><p>可以看到，simulink没有正确计算$\delta = 0.0025$（啥都没有），$\delta = 0.1$也出现了明显的失真</p><h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p>经过分析，其原因在于simulink在仿真时，仿真时间步长相对固定（具体根据使用到的元件自动确定，但一般不会太高），如果脉冲持续时间过短则会导致仿真过程中跳过一些时间点。</p><p>例如在$\delta = 0.0025$时波形出现失真就是因为在$time = 0.0025$处在两个时间节点之间</p><h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p>调整sikmulink的仿真时间步长可以解决这个问题，具体设置方法如图所示</p><ol><li>按下ctrl+e快捷键打开Model settings</li><li>修改方框圈起来的参数（根据实际需要修改最大和最小时间步长，这里$\delta$最小为<code>0.0025</code>所以我就设置最大时间步长为<code>0.0001</code>，最小时间步长为<code>0.00001</code>，以尽可能平滑）</li></ol><p><img src="https://img-blog.csdnimg.cn/20200527141725592.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70" alt="Model steeings设置"></p><p>之后再次运行仿真，我们可以看到simulink产生了很好的三角脉冲<br><img src="https://img-blog.csdnimg.cn/20200527142025173.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70" alt="delta =0.0025"><br><img src="https://img-blog.csdnimg.cn/20200527142054172.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70" alt="delta = 0.1"></p><h1 id="一阶系统对不同-delta-的相应"><a href="#一阶系统对不同-delta-的相应" class="headerlink" title="一阶系统对不同$\delta$的相应"></a>一阶系统对不同$\delta$的相应</h1><p><strong>仿真时间为<code>2s</code></strong> ，把三角脉冲($\delta = 0.0025$)输入<strong>之前说的</strong>一阶系统，观察响应与理想的冲激响应做对比</p><p>三角脉冲响应<br><img src="https://img-blog.csdnimg.cn/20200527142346976.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70" alt="delta = 0.0025时的响应"><br>理想冲击响应<br><img src="https://img-blog.csdnimg.cn/20200527142600561.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70" alt="理想冲击响应"></p><p>系统对不同$\delta$取值的响应</p><p><img src="https://img-blog.csdnimg.cn/20200527142647748.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTMzMDA1NTg=,size_16,color_FFFFFF,t_70" alt="系统对不同宽度三角脉冲的响应"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> matlab </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 三角脉冲  simulink </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于getline等函数无法正确读入问题</title>
       <link href="/2020/05/guan-yu-shu-ru-liu-qing-kong-wen-ti/"/>
       <url>/2020/05/guan-yu-shu-ru-liu-qing-kong-wen-ti/</url>
